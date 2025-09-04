@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Astro + Tailwind CSS 4">
+  <main
+    class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-8"
+  >
+    <div class="max-w-2xl mx-auto text-center">
+      <h1 class="text-5xl font-bold text-gray-900 mb-6">
+        Welcome to <span class="text-primary">Astro</span>
+      </h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Built with Tailwind CSS 4 and powered by Bun
+      </p>
+      <div class="flex gap-4 justify-center">
+        <a
+          href="https://astro.build"
+          class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Learn Astro
+        </a>
+        <a
+          href="https://tailwindcss.com"
+          class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          Tailwind Docs
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
