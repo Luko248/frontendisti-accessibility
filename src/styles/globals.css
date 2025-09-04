@@ -3,6 +3,9 @@
 @theme {
   --color-primary: #3b82f6;
   --color-secondary: #64748b;
+  --color-osm-blue: #007cad;
+  --color-osm-green: #7ebc6f;
+  --color-osm-light: #e8f4fd;
   --font-family-sans: system-ui, sans-serif;
   --font-family-mono: ui-monospace, monospace;
 
@@ -11,3 +14,5 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 }
+
+/* Force rebuild */
