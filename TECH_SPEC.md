@@ -1,8 +1,15 @@
 ### **🚀 AI Implementation Task: Complete Responsive Portfolio from Figma with Full Testing & Optimization**
 
-**Objective**:
+**🔥 CRITICAL OBJECTIVE**:
 
-Build a **complete, production-ready portfolio website** using **Figma DevMode MCP**, **Context7 MCP**, and **Playwright MCP** with modern responsive design, accessibility, and performance optimization. Header image will be included on all media queries.
+Build a **complete, production-ready portfolio website** with the following requirements:
+
+- Use **Figma DevMode MCP**, **Context7 MCP**, and **Playwright MCP** for implementation
+- Implement modern responsive design, accessibility, and performance optimization
+- Header image will be included on all media queries, on desktop it will be horizontally centered with content on left side
+- Content of all sections will be extracted from Figma design
+- All sections must have same width in implementation (In figma design it is not same for all sections)
+- Implement properly sized icons throughout the design
 
 ---
 
