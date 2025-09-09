@@ -1,145 +1,203 @@
-# 🚀 AI Implementation Task: Complete Responsive Portfolio from Figma with Full Testing & Optimization
+### **🚀 AI Implementation Task: Complete Responsive Portfolio from Figma with Full Testing & Optimization**
 
-## Objective
+**Objective**:
 
-Build a complete, production-ready portfolio website using Figma DevMode MCP, Context7 MCP, and Playwright MCP with modern responsive design and performance optimisation.
+Build a **complete, production-ready portfolio website** using **Figma DevMode MCP**, **Context7 MCP**, and **Playwright MCP** with modern responsive design, accessibility, and performance optimization. Header image will be included on all media queries.
 
-## 🎯 Design Components to Implement (Figma DevMode MCP)
+---
 
-### Figma selection
+### **🎯 Design Components to Implement (Figma DevMode MCP)**
 
-- [Figma selection](https://www.figma.com/design/GCgi0YtIWzj12XzFVSswRj/Portfolio-template---Edit-this-portfolio-and-export-it-as-HTML---Get-your-portfolio-live-in-no-time--Community-?node-id=2910-339&m=dev)
+1. **Page Header** - https://www.figma.com/design/GCgi0YtIWzj12XzFVSswRj/Portfolio-template---Edit-this-portfolio-and-export-it-as-HTML---Get-your-portfolio-live-in-no-time--Community-?node-id=701-728&m=dev
+   - Hero section with title, subtitle, description, and CTA
+   - Background image with proper responsive scaling
+2. **Skills Section** - https://www.figma.com/design/GCgi0YtIWzj12XzFVSswRj/Portfolio-template---Edit-this-portfolio-and-export-it-as-HTML---Get-your-portfolio-live-in-no-time--Community-?node-id=701-730&m=dev
+   - Three skill cards with icons and descriptions
+   - Responsive grid layout
+3. **Latest Work Section** - https://www.figma.com/design/GCgi0YtIWzj12XzFVSswRj/Portfolio-template---Edit-this-portfolio-and-export-it-as-HTML---Get-your-portfolio-live-in-no-time--Community-?node-id=701-749&m=dev
+   - Project showcase with images and descriptions
+   - Gallery-style responsive layout
 
-### Sections to implement
+---
 
-- **Page Header**
-  - Hero section with title, subtitle, description, and CTA
-  - Background image must be visible across all resolutions
-  - Ensure image dimensions (width/height) are explicitly defined to meet CLS metric requirements
-- **Skills Section**
-  - Skill cards with icons and descriptions
-  - Responsive grid layout
-- **Latest Work Section**
-  - Project showcase with images and descriptions
-  - Gallery-style layout
+### **🛠️ Technical Requirements (Context7 MCP)**
 
-## 🛠️ Technical Requirements (Context7 MCP)
+### **Framework & Setup**
 
-### Framework & Setup
+- Use **Astro** with **Tailwind CSS 4** (current project setup)
+- Research best practices for **Astro components** and **Tailwind responsive design**
+- Implement **TypeScript** for type safety
+- Extract all resources like font, images and icons from Figma design
 
-- Use Astro with Tailwind CSS 4
-- Implement TypeScript for type safety
-- Follow best practices for Astro component structure and Tailwind usage
+### **Responsive Design (Mobile-First)**
 
-### Responsive Design
+- **Dynamic Viewport Units**: Use `svi`, `svb` for fluid scaling
+- **Breakpoint Strategy**:
+  - Use Tailwind 4 default breakpoints
+- **Typography Scaling**: Fluid typography using `clamp()` or `svi` units
+- **Container Queries**: Use `@container` for component-level responsiveness
 
-- Implement responsive behaviour using Tailwind’s default media query breakpoints
-- Use mobile-first approach
-- Apply dynamic viewport units (`svi`, `svb`) for fluid scaling
+### **Accessibility (WCAG 2.1 AA)**
 
-### Performance Optimisation
+- **Semantic HTML**: Proper heading hierarchy (h1, h2, h3)
+- **Alt text** for all images and icons
+- **Color contrast**: Ensure 4.5:1 ratio minimum
+- **Focus management**: Visible focus indicators
+- **Screen reader** compatibility
+- **Keyboard navigation** support
 
-- Image handling:
-  - Load images via Figma URLs
-  - Define explicit width and height attributes to reduce layout shift
-- CSS optimisation:
-  - Purge unused Tailwind classes
-  - Minimise custom CSS
-- JavaScript bundle:
-  - Keep payload minimal
-- Core Web Vitals targets:
-  - LCP < 2.5s
-  - FID < 100ms
-  - CLS < 0.1
+### **Performance Optimization**
 
-## 🔧 Implementation Steps
+- **Image optimization**: WebP format, lazy loading
+- **CSS optimization**: Purged Tailwind, minimal custom CSS
+- **Bundle size**: Minimize JavaScript payload
+- **Core Web Vitals**: Target LCP < 2.5s, FID < 100ms, CLS < 0.1
 
-- **Phase 1: Setup & Cleanup**
-  - Remove default content from `src/pages/index.astro`
-  - Clean up `src/layouts/Layout.astro` with proper meta tags
-  - Set up semantic HTML document structure
-- **Phase 2: Component Development**
-  - Extract specs from Figma node `2910-339`
-  - Implement each section as a self-contained Astro component
-- **Phase 3: Responsive Implementation**
-  - Use Tailwind’s default breakpoints for layout adaptation
-  - Apply mobile-first design principles
-  - Use dynamic units for scaling
-- **Phase 4: Performance Optimisation**
-  - Optimise image dimensions for CLS
-  - Minimise CSS and JS payloads
-  - Ensure fast load times and clean console
+---
 
-## 🧪 Testing Requirements (Playwright MCP)
+### **🔧 Implementation Steps**
 
-### Responsive Testing
+### **Phase 1: Setup & Content Removal**
 
-- Devices:
-  - Mobile: iPhone SE, iPhone 14
-  - Tablet: iPad, iPad Pro
-  - Desktop: 1920x1080, 2560x1440, 3440x1440
-  - Edge cases: 320px width, portrait/landscape
+1. **Remove default content** from `src/pages/index.astro`
+2. **Clean up Layout.astro** with proper meta tags
+3. **Set up proper HTML document structure**
 
-### Functionality Testing
+### **Phase 2: Component Development (Figma DevMode MCP)**
 
-- Link navigation
-- Hover states
-- Scroll behaviour
-- Form interactions (if present)
+1. **Extract PageHeader specs** from Figma node-id=701-728
+2. **Extract SkillsSection specs** from Figma node-id=701-730
+3. **Extract LatestWorkSection specs** from Figma node-id=701-727
+4. **Implement each as self-contained Astro components**
 
-### Performance Testing
+### **Phase 3: Responsive Implementation (Context7 MCP)**
 
-- Page load time
-- Console errors
-- Network requests
+1. **Research Tailwind 4 responsive best practices**
+2. **Implement mobile-first responsive design**
+3. **Use dynamic viewport units for fluid scaling**
+4. **Optimize for all device sizes and orientations**
 
-## 🎨 Design Fidelity Requirements
+### **Phase 4: Accessibility & Performance (Context7 MCP)**
 
-### Visual Accuracy
+1. **Research Astro accessibility best practices**
+2. **Implement semantic HTML structure**
+3. **Add proper ARIA labels and roles**
+4. **Optimize images and assets**
+5. **Implement performance best practices**
 
-- Exact colours from Figma (hex values)
-- Typography: Epilogue font family, correct weights and sizes
-- Consistent spacing and visual hierarchy
+---
 
-### Interactive Elements
+### **🧪 Testing Requirements (Playwright MCP)**
 
-- Smooth hover transitions
-- Clear active states
-- Graceful error handling
+### **Responsive Testing**
 
-## ✅ Success Criteria
+- **Mobile devices**: iPhone SE (375x667), iPhone 14 (390x844)
+- **Tablets**: iPad (768x1024), iPad Pro (1024x1366)
+- **Desktop**: 1920x1080, 2560x1440, 3440x1440
+- **Edge cases**: 320px width, portrait/landscape orientations
 
-### Functional Requirements
+### **Functionality Testing**
 
-- ✅ Pixel-perfect implementation of Figma design
+- **Link navigation**: CTA buttons, external links
+- **Hover states**: Interactive elements
+- **Scroll behavior**: Smooth scrolling, section visibility
+- **Form interactions**: If any forms are present
+
+### **Performance Testing**
+
+- **Page load time**: Measure and optimize
+- **Console errors**: Ensure clean console
+- **Network requests**: Minimize and optimize
+- **Accessibility audit**: Use browser accessibility tools
+
+---
+
+### **📱 Responsive Behavior Specifications**
+
+### **Layout Adaptations**
+
+- **320px-767px**: Single column, stacked content, touch-optimized
+- **768px-1023px**: 2-column grids, improved spacing
+- **1024px+**: Multi-column layouts, horizontal arrangements
+- **1920px+**: Optimized for large screens, prevent content stretching
+
+### **Typography System**
+
+- **Headings**: Scale from 6svi (mobile) to 2svi (desktop)
+- **Body text**: Scale from 3.5svi (mobile) to 1.1svi (desktop)
+- **Line height**: Responsive for optimal readability
+- **Font loading**: Proper fallbacks and optimization
+
+### **Image Handling**
+
+- **Responsive images**: Multiple sizes, format optimization
+- **Background images**: Proper scaling, object-fit
+- **Icons**: SVG optimization, scalable sizing
+- **Lazy loading**: Implement for performance
+
+---
+
+### **🎨 Design Fidelity Requirements**
+
+### **Visual Accuracy**
+
+- **Exact colors**: Extract hex values from Figma
+- **Typography**: Proper font families (Epilogue), weights, sizes
+- **Spacing**: Maintain design system consistency
+- **Visual hierarchy**: Proper contrast and emphasis
+
+### **Interactive Elements**
+
+- **Hover states**: Smooth transitions, visual feedback
+- **Active states**: Clear interaction feedback
+- **Loading states**: If applicable
+- **Error states**: Graceful error handling
+
+---
+
+### **✅ Success Criteria**
+
+### **Functional Requirements**
+
+- ✅ All Figma designs implemented with pixel-perfect accuracy
 - ✅ Fully responsive across all target devices
 - ✅ Clean, semantic HTML structure
-- ✅ Optimised performance metrics
+- ✅ WCAG 2.1 AA accessibility compliance
+- ✅ Optimized performance metrics
 
-### Technical Requirements
+### **Technical Requirements**
 
-- ✅ TypeScript without errors
-- ✅ Tailwind CSS 4 optimisation
+- ✅ TypeScript implementation without errors
+- ✅ Tailwind CSS 4 optimization
 - ✅ Cross-browser compatibility
 - ✅ Clean console output
 - ✅ Proper SEO meta tags
 
-### Testing Requirements
+### **Testing Requirements**
 
+- ✅ Comprehensive Playwright MCP test coverage
 - ✅ Performance benchmarks met
-- ✅ Responsive behaviour validated
+- ✅ Responsive behavior validated across all breakpoints
 
-## 🔄 Workflow Integration
+---
 
-- Use Context7 MCP for technical research
-- Use Figma DevMode MCP for design extraction
-- Use Playwright MCP for testing and validation
-- Iterate and optimise based on test results
-- Document implementation decisions and optimisations
+### **🔄 Workflow Integration**
 
-## 📝 Deliverables
+1. **Use Context7 MCP** for technical research and best practices
+2. **Use Figma DevMode MCP** for design extraction and asset gathering
+3. **Use Playwright MCP** for comprehensive testing and validation
+4. **Iterate and optimize** based on test results
+5. **Document** implementation decisions and optimizations
 
-- Complete Astro project with all components
-- Responsive design using Tailwind defaults
-- Performance-optimised codebase
-- Clean, maintainable codebase
+---
+
+### **📝 Deliverables**
+
+- **Complete Astro project** with all components implemented
+- **Responsive design** working flawlessly across all devices
+- **Accessibility-compliant** codebase with proper semantics
+- **Performance-optimized** assets and code
+- **Comprehensive test results** from Playwright MCP validation
+- **Clean, maintainable code** following best practices
+
+This implementation should serve as a **production-ready portfolio template** that can be easily customized and deployed.
