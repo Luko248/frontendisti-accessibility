@@ -45,7 +45,7 @@ jobs:
           echo "Using BASE_PATH=$BASE_PATH and SITE_URL=$SITE_URL"
 
       - name: Install dependencies (bun)
-        run: bun install --frozen-lockfile
+        run: bun install
 
       - name: Build (bun)
         env:
