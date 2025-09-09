@@ -126,7 +126,6 @@ Build a complete, production-ready portfolio website using Figma DevMode MCP, Co
 
 ### Testing Requirements
 
-- ✅ Comprehensive Playwright test coverage
 - ✅ Performance benchmarks met
 - ✅ Responsive behaviour validated
 
@@ -143,5 +142,4 @@ Build a complete, production-ready portfolio website using Figma DevMode MCP, Co
 - Complete Astro project with all components
 - Responsive design using Tailwind defaults
 - Performance-optimised codebase
-- Comprehensive Playwright test results
 - Clean, maintainable codebase
