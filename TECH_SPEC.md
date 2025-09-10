@@ -55,10 +55,11 @@ Build a **complete, production-ready portfolio website** with the following requ
 
 ### **Performance Optimization**
 
-- **Image optimization**: WebP format, lazy loading
+- **Image optimization**: AVIF format, lazy loading via Astro Image component
 - **CSS optimization**: Purged Tailwind, minimal custom CSS
 - **Bundle size**: Minimize JavaScript payload
 - **Core Web Vitals**: Target LCP < 2.5s, FID < 100ms, CLS < 0.1
+- **Schema.org**: JSON-LD structured data for SEO and rich snippets
 
 ---
 
@@ -89,8 +90,9 @@ Build a **complete, production-ready portfolio website** with the following requ
 1. **Research Astro accessibility best practices**
 2. **Implement semantic HTML structure**
 3. **Add proper ARIA labels and roles**
-4. **Optimize images and assets**
-5. **Implement performance best practices**
+4. **Optimize images using Astro Image component from public folder**
+5. **Add Schema.org JSON-LD structured data to Layout.astro head**
+6. **Implement performance best practices**
 
 ---
 
@@ -137,10 +139,13 @@ Build a **complete, production-ready portfolio website** with the following requ
 
 ### **Image Handling**
 
-- **Responsive images**: Multiple sizes, format optimization
-- **Background images**: Proper scaling, object-fit
-- **Icons**: SVG optimization, scalable sizing
-- **Lazy loading**: Implement for performance
+- **Static Assets**: Use `/public/images/` folder for all images (not Figma links)
+- **Astro Image Component**: Use `<Image />` from `astro:assets` for optimization
+- **Responsive Images**: `widths={[425, 800]}` and `sizes` attributes for responsive loading
+- **Lazy Loading**: `loading="lazy"` on LatestWorkSection gallery images
+- **Alt Attributes**: Descriptive alt text for all images (accessibility requirement)
+- **Format**: AVIF format for optimal compression and quality
+- **Header Image**: Responsive header using Astro Image component with proper srcset
 
 ---
 
