@@ -14,4 +14,16 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  // Performance optimizations
+  build: {
+    inlineStylesheets: "auto",
+  },
+  image: {
+    // Enable image optimization
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
+  // Enable compression
+  compressHTML: true,
 });
