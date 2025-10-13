@@ -1,14 +1,78 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const tooltipButtonClassName =
+  "inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent bg-primary p-0 text-sm font-semibold text-white leading-none shadow transition hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/70";
+const tooltipWrapperClassName =
+  "relative flex flex-col items-center gap-4";
+const tooltipPopoverStyle =
+  "border-radius: 0.75rem; border: 1px solid rgb(226 232 240 / 1); background-color: rgba(15,23,42,0.9); color: white; padding: 0.5rem 1rem; font-size: 0.875rem; line-height: 1.25rem; box-shadow: 0 20px 25px -5px rgba(15,23,42,0.1), 0 10px 10px -5px rgba(15,23,42,0.04);";
 ---
 
 <Layout title="Popover">
-  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-    <div class="max-w-3xl mx-auto text-center space-y-4">
-      <h1 class="text-4xl font-semibold text-gray-900">Popover Pattern Playground</h1>
-      <p class="text-lg text-gray-700">
-        This page will feature accessible popover components and guidance.
-      </p>
-    </div>
+  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16">
+    <section class="flex w-full max-w-3xl flex-col items-center gap-10 text-center">
+      <header class="space-y-4">
+        <h1 class="text-4xl font-semibold text-gray-900">Popover Pattern Playground</h1>
+        <p class="text-lg text-gray-700">
+          Discover native popover behaviors with accessible triggers and positioning.
+        </p>
+      </header>
+
+      <div class={tooltipWrapperClassName}>
+        <button
+          class={tooltipButtonClassName}
+          id="tooltipBtn"
+          type="button"
+          commandfor="tooltipPopover"
+          command="toggle-popover"
+          aria-haspopup="true"
+          aria-controls="tooltipPopover"
+          aria-describedby="tooltipPopover"
+        >
+          <span aria-hidden="true">i</span>
+          <span class="sr-only">Toggle additional tooltip information</span>
+        </button>
+
+        <div
+          id="tooltipPopover"
+          anchor="tooltipBtn"
+          popover
+          role="tooltip"
+          style={tooltipPopoverStyle}
+        >
+          This is tooltip text.
+        </div>
+      </div>
+    </section>
   </main>
+
+  <style>
+    #tooltipBtn {
+      background-color: var(--tooltip_bg-color, #38bdf8);
+      anchor-name: --tooltip-button;
+    }
+
+    @media (hover: hover) {
+      #tooltipBtn:hover {
+        --tooltip_bg-color: hsl(from #38bdf8 h s calc(l / 1.25) / 1);
+      }
+    }
+
+    #tooltipPopover {
+      inset: auto;
+      margin: 0;
+      position: absolute;
+      translate: -50%;
+      inline-size: min(200px, 85%);
+      margin-block: 0.25em;
+    }
+
+    @supports(anchor-name: --foo) {
+      #tooltipPopover {
+        position-anchor: --tooltip-button;
+        bottom: anchor(top);
+        left: anchor(center);
+      }
+    }
+  </style>
 </Layout>
