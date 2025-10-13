@@ -6,6 +6,17 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const currentPath =
+  Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/+$/, "");
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/modal", label: "Modal" },
+  { href: "/popover", label: "Popover" },
+  { href: "/accordion", label: "Accordion" },
+  { href: "/select", label: "Select" },
+  { href: "/carousel", label: "Carousel" },
+];
+const navHeight = "3.5rem";
 ---
 
 <!doctype html>
@@ -17,7 +28,45 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
-    <slot />
+  <body
+    class="min-h-screen bg-slate-50 text-slate-900 antialiased"
+    style={`--nav-height: ${navHeight};`}
+  >
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-slate-50/90 backdrop-blur"
+    >
+      <nav
+        aria-label="Primary"
+        class="mx-auto flex max-w-5xl items-center justify-center px-4"
+      >
+        <ul
+          class="flex flex-wrap items-center justify-center gap-4 py-3 text-sm font-medium text-slate-700"
+        >
+          {
+            links.map(({ href, label }) => {
+              const isCurrent = currentPath === href;
+              return (
+                <li key={href}>
+                  <a
+                    href={href}
+                    aria-current={isCurrent ? "page" : undefined}
+                    class={`rounded-full px-3 py-1 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                      isCurrent
+                        ? "bg-primary/10 text-primary"
+                        : "text-slate-600 hover:text-primary"
+                    }`}
+                  >
+                    {label}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+    </header>
+    <div class="flex min-h-screen flex-col pt-[var(--nav-height)]">
+      <slot />
+    </div>
   </body>
 </html>
