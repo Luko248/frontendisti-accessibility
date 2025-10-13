@@ -2,41 +2,76 @@
 import Layout from "../layouts/Layout.astro";
 const sectionClassName =
   "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
-const noteClassName =
-  "text-sm text-slate-600";
+const noteClassName = "text-sm text-slate-600";
 ---
 
 <Layout title="Carousel">
-  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16">
+  <main
+    class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16"
+  >
     <section class={sectionClassName}>
       <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">Carousel Pattern Playground</h1>
+        <h1 class="text-4xl font-semibold text-gray-900">
+          Carousel Pattern Playground
+        </h1>
         <p class="text-lg text-gray-700">
-          Modern scroll-linked carousel using scroll markers and anchor-positioning buttons.
+          Modern scroll-linked carousel using scroll markers and
+          anchor-positioning buttons.
         </p>
       </header>
 
-      <div class="carousel-demo mx-auto w-full max-w-[500px] rounded-3xl bg-slate-900/15 p-6 shadow-lg ring-1 ring-white/10 backdrop-blur">
-        <div class="carousel" role="list">
-          <div aria-label="Frontkon" role="listitem" data-text="Frontkon"></div>
-          <div aria-label="Je" role="listitem" data-text="Je"></div>
-          <div aria-label="Boží" role="listitem" data-text="Boží"></div>
+      <div class="carousel-demo mx-auto w-full max-w-[500px]">
+        <div
+          class="carousel"
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Pet photo carousel"
+        >
+          <div
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 1 of 3: playful dog looking toward the camera"
+          >
+            <img
+              src="https://place.dog/500/500"
+              alt="Playful dog looking toward the camera"
+              loading="lazy"
+            />
+          </div>
+          <div
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 2 of 3: resting cat observing the scene"
+          >
+            <img
+              src="https://placecats.com/500/500"
+              alt="Resting cat observing the scene"
+              loading="lazy"
+            />
+          </div>
+          <div
+            role="group"
+            aria-roledescription="slide"
+            aria-label="Slide 3 of 3: bear standing in a forest"
+          >
+            <img
+              src="https://placebear.com/500/500"
+              alt="Bear standing in a forest"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
       <p class={noteClassName}>
-        This demo relies on experimental scroll-marker, scroll-button, and container queries. It falls back to a horizontal scroller when unsupported.
+        Demonstrates experimental scroll-marker and scroll-button behaviours.
+        Browsers without support fall back to horizontal scrolling.
       </p>
     </section>
   </main>
 
   <style>
     .carousel-demo {
-      --color-dark: rgb(174, 45, 246);
-      --color-light: #0a8eff;
-      --_gap: 1rem;
-      color-scheme: dark;
       container-type: inline-size;
-      font-family: "Open Sans", system-ui, sans-serif;
     }
 
     .carousel-demo * {
@@ -49,11 +84,12 @@ const noteClassName =
       grid-template-columns: repeat(3, 100cqi);
       overflow-x: auto;
       anchor-name: --carousel;
-      column-gap: var(--_gap);
-      transition: all 0.3s ease-out;
-      border-radius: 1em;
+      column-gap: 1rem;
+      border-radius: 1.25rem;
       scroll-marker-group: after;
       scroll-behavior: smooth;
+      counter-reset: snap-counter 0;
+      counter-increment: snap-counter;
     }
 
     .carousel-demo .carousel::-webkit-scrollbar {
@@ -62,33 +98,36 @@ const noteClassName =
 
     .carousel-demo .carousel::scroll-marker-group {
       display: flex;
-      block-size: calc(var(--_gap) * 1.5);
+      block-size: 1.5rem;
       gap: 1rem;
       justify-content: center;
       margin-block-start: 1rem;
     }
 
     .carousel-demo .carousel::scroll-button(*) {
-      display: block;
+      display: grid;
       position: absolute;
       position-anchor: --carousel;
       border-radius: 100vmax;
-      color: white;
+      color: var(--color-primary);
       font-weight: bold;
       font-size: 2em;
       line-height: 1;
       aspect-ratio: 1;
       inline-size: 2.5rem;
-      border: 2px solid white;
-      background-color: hsl(0 0% 100% / 0.25);
-      backdrop-filter: blur(0.5rem);
+      border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 15%,
+        white 85%
+      );
+      backdrop-filter: blur(0.75rem);
       transition:
         translate 0.25s ease-out,
         opacity 0.25s ease-out,
         scale 0.25s ease-out;
       cursor: pointer;
-      scale: 1.1;
-      text-box: trim-both ex alphabetic;
+      scale: 1.05;
     }
 
     .carousel-demo .carousel::scroll-button(*):disabled {
@@ -97,15 +136,15 @@ const noteClassName =
     }
 
     .carousel-demo .carousel::scroll-button(left) {
-      content: "‹";
+      content: "‹" / "Previous slide";
       position-area: center left;
-      translate: calc(100% + calc(var(--_gap) / 2)) 0;
+      translate: calc(100% + 0.5rem) 0;
     }
 
     .carousel-demo .carousel::scroll-button(right) {
-      content: "›";
+      content: "›" / "Next slide";
       position-area: center right;
-      translate: calc(-100% - calc(var(--_gap) / 2)) 0;
+      translate: calc(-100% - 0.5rem) 0;
     }
 
     .carousel-demo .carousel > div {
@@ -114,73 +153,51 @@ const noteClassName =
       place-items: center;
       counter-increment: snap-counter;
       block-size: clamp(16rem, 50svb, 22rem);
-      padding: 2rem;
       border-radius: 1rem;
-      background-image: linear-gradient(90deg, var(--col-bg));
-      scroll-snap-align: start;
+      overflow: hidden;
       scroll-snap-stop: always;
+      scroll-snap-align: center;
     }
 
     .carousel-demo .carousel > div::scroll-marker {
-      content: " ";
-      background-color: var(--marker-bg, var(--color-light));
-      inline-size: calc(var(--_gap) * 1.5);
+      content: counter(snap-counter) / attr(aria-label);
+      background-color: var(
+        --marker-bg,
+        color-mix(in oklch, var(--color-primary) 55%, white 45%)
+      );
+      inline-size: 1.5rem;
       aspect-ratio: 1;
-      display: block;
+      display: grid;
+      text-decoration: none;
+      place-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: small;
       box-sizing: border-box;
       border-radius: 100vmax;
-      border: 2px solid CanvasText;
+      scale: 1;
+      transition:
+        scale 0.25s ease-out,
+        background-color 0.25s ease-out,
+        border-color 0.25s ease-out;
+      border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
     }
 
     .carousel-demo .carousel > div::scroll-marker:target-current {
-      --marker-bg: var(--color-dark);
+      --marker-bg: var(--color-primary);
+      scale: 1.2;
     }
 
-    @media (width <= 768px) {
-      .carousel-demo .carousel > div {
-        scroll-snap-align: center;
-      }
+    .carousel-demo .carousel > div::scroll-marker:target-before,
+    .carousel-demo .carousel > div::scroll-marker:target-after {
+      scale: 0.8;
     }
 
-    .carousel-demo .carousel > div:first-of-type {
-      --col-bg: var(--color-light), var(--color-dark);
-    }
-
-    .carousel-demo .carousel > div:not(:first-of-type, :last-of-type) {
-      --col-bg: var(--color-dark), var(--color-light);
-    }
-
-    .carousel-demo .carousel > div:last-of-type {
-      --col-bg: var(--color-light), var(--color-dark);
-    }
-
-    .carousel-demo .carousel > div::after {
-      -webkit-text-stroke: 0.5cqi white;
-      color: transparent;
-      content: attr(data-text);
-      font-weight: bold;
-      font-size: 15cqi;
-      paint-order: stroke fill;
-      transition: opacity 0.25s ease-in-out, scale 0.25s ease-in-out;
-      transition-delay: 0.5s;
-      opacity: var(--content-opacity, 1);
-      scale: var(--content-scale, 1);
-    }
-
-    @supports (container-type: scroll-state) {
-      @media (prefers-reduced-motion: no-preference) and (width <= 768px) {
-        .carousel-demo .carousel > div {
-          --content-opacity: 0;
-          --content-scale: 0.5;
-        }
-
-        .carousel-demo .carousel > div {
-          @container scroll-state(snapped: inline) {
-            --content-opacity: 1;
-            --content-scale: 1;
-          }
-        }
-      }
+    .carousel-demo .carousel > div img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     @supports not (scroll-marker-group: after) {
