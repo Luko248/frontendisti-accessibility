@@ -1,14 +1,145 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const sectionClassName =
+  "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
+const detailsClassName =
+  "group w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg";
+const summaryClassName =
+  "flex w-full items-center justify-between gap-3 rounded-2xl px-6 py-4 text-left text-lg font-semibold text-white leading-snug cursor-pointer shadow transition";
+const panelClassName =
+  "space-y-4 border-t border-slate-200 bg-white px-6 pb-6 pt-6 text-left text-base leading-relaxed text-slate-700";
 ---
 
 <Layout title="Accordion">
-  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-    <div class="max-w-3xl mx-auto text-center space-y-4">
-      <h1 class="text-4xl font-semibold text-gray-900">Accordion Pattern Playground</h1>
-      <p class="text-lg text-gray-700">
-        This page will collect accordion patterns with a focus on accessibility.
-      </p>
-    </div>
+  <main
+    class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16"
+  >
+    <section class={sectionClassName}>
+      <header class="space-y-4">
+        <h1 class="text-4xl font-semibold text-gray-900">
+          Accordion Pattern Playground
+        </h1>
+        <p class="text-lg text-gray-700">
+          This page will collect accordion patterns with a focus on
+          accessibility.
+        </p>
+      </header>
+
+      <div class="w-full text-left">
+        <details id="accordionDemo" class={detailsClassName}>
+          <summary
+            id="accordionSummary"
+            class={summaryClassName}
+            aria-controls="accordion-panel"
+          >
+            <span class="flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-base font-semibold leading-none transition group-open:bg-white/30"
+              >
+                <span class="group-open:hidden">+</span>
+                <span class="hidden group-open:inline">-</span>
+              </span>
+              <span>Accordion</span>
+            </span>
+            <span aria-hidden="true" class="ml-auto text-sm font-medium text-white/80">
+              <span class="group-open:hidden">Open</span>
+              <span class="hidden group-open:inline">Close</span>
+            </span>
+            <span class="sr-only group-open:hidden">Expand accordion content</span>
+            <span class="sr-only hidden group-open:inline">Collapse accordion content</span>
+          </summary>
+          <div
+            id="accordion-panel"
+            role="region"
+            aria-labelledby="accordionSummary"
+            class={panelClassName}
+          >
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+            <p>
+              It has survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
+          </div>
+        </details>
+      </div>
+    </section>
   </main>
+
+  <style>
+    :global(:root) {
+      interpolate-size: allow-keywords;
+    }
+
+    #accordionDemo {
+      --details-content_block-size: 0;
+    }
+
+    #accordionDemo[open] {
+      --details-content_block-size: max-content;
+    }
+
+    #accordionDemo::details-content {
+      block-size: var(--details-content_block-size, 0);
+      padding-block: 0;
+      padding-inline: 0;
+      background-color: transparent;
+      transition:
+        block-size 0.3s linear,
+        padding-block 0.3s linear,
+        content-visibility 0.3s linear;
+      transition-behavior: allow-discrete;
+    }
+
+    #accordionSummary {
+      background-color: var(--color-primary);
+      transition:
+        background-color 0.25s ease,
+        filter 0.25s ease;
+    }
+
+    #accordionSummary:hover {
+      background-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
+    }
+
+    #accordionSummary:focus {
+      outline: none;
+      filter: drop-shadow(0 0 0.65rem var(--color-primary));
+      background-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
+    }
+
+    #accordionDemo[open] #accordionSummary {
+      background-color: color-mix(in oklch, var(--color-primary) 70%, black 30%);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    #accordionDemo[open] #accordionSummary:hover {
+      background-color: color-mix(in oklch, var(--color-primary) 65%, black 35%);
+    }
+
+    #accordionDemo[open] #accordionSummary:focus {
+      background-color: color-mix(in oklch, var(--color-primary) 68%, black 32%);
+      filter: drop-shadow(0 0 0.75rem var(--color-primary));
+    }
+
+    #accordionSummary::marker {
+      content: "";
+    }
+
+    #accordionSummary::-webkit-details-marker {
+      display: none;
+    }
+
+  </style>
 </Layout>
