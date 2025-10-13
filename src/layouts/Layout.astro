@@ -46,7 +46,7 @@ const navHeight = "3.5rem";
             links.map(({ href, label }) => {
               const isCurrent = currentPath === href;
               return (
-                <li key={href}>
+                <li>
                   <a
                     href={href}
                     aria-current={isCurrent ? "page" : undefined}

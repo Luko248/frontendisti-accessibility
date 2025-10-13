@@ -2,19 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 const tooltipButtonClassName =
   "inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent p-0 text-sm font-semibold text-white leading-none shadow transition focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary/70";
-const tooltipWrapperClassName =
-  "relative flex flex-col items-center gap-4";
+const tooltipWrapperClassName = "relative flex flex-col items-center gap-4";
 const tooltipPopoverStyle =
   "border-radius: 0.75rem; border: 1px solid var(--color-popover-border); background-color: var(--color-popover-surface); color: var(--color-popover-text); padding: 0.5rem 1rem; font-size: 0.875rem; line-height: 1.25rem; box-shadow: 0 20px 25px -5px var(--color-popover-shadow-strong), 0 10px 10px -5px var(--color-popover-shadow-soft);";
 ---
 
 <Layout title="Popover">
-  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16">
-    <section class="flex w-full max-w-3xl flex-col items-center gap-10 text-center">
+  <main
+    class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16"
+  >
+    <section
+      class="flex w-full max-w-3xl flex-col items-center gap-10 text-center"
+    >
       <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">Popover Pattern Playground</h1>
+        <h1 class="text-4xl font-semibold text-gray-900">
+          Popover Pattern Playground
+        </h1>
         <p class="text-lg text-gray-700">
-          Discover native popover behaviors with accessible triggers and positioning.
+          Discover native popover behaviors with accessible triggers and
+          positioning.
         </p>
       </header>
 
@@ -35,7 +41,6 @@ const tooltipPopoverStyle =
 
         <div
           id="tooltipPopover"
-          anchor="tooltipBtn"
           popover
           role="tooltip"
           style={tooltipPopoverStyle}
@@ -54,12 +59,20 @@ const tooltipPopoverStyle =
 
     @media (hover: hover) {
       #tooltipBtn:hover {
-        --tooltip_bg-color: color-mix(in oklch, var(--color-tooltip) 85%, white 15%);
+        --tooltip_bg-color: color-mix(
+          in oklch,
+          var(--color-tooltip) 85%,
+          white 15%
+        );
       }
     }
 
     #tooltipBtn:focus {
-      --tooltip_bg-color: color-mix(in oklch, var(--color-tooltip) 80%, white 20%);
+      --tooltip_bg-color: color-mix(
+        in oklch,
+        var(--color-tooltip) 80%,
+        white 20%
+      );
     }
 
     #tooltipPopover {
@@ -71,7 +84,7 @@ const tooltipPopoverStyle =
       margin-block: 0.25em;
     }
 
-    @supports(anchor-name: --foo) {
+    @supports (anchor-name: --foo) {
       #tooltipPopover {
         position-anchor: --tooltip-button;
         bottom: anchor(top);
