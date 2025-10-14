@@ -1,32 +1,97 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const baseUrl = import.meta.env.BASE_URL || "/";
+const basePath = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const tiles = [
+  {
+    path: "",
+    title: "Overview",
+    description: "Return to the introductions and goals for this playground.",
+  },
+  {
+    path: "modal",
+    title: "Modal Dialog",
+    description:
+      "Test accessible dialog patterns, focus traps, and backdrop flows.",
+  },
+  {
+    path: "popover",
+    title: "Popover",
+    description: "Experiment with anchor positioning and dismissible popovers.",
+  },
+  {
+    path: "accordion",
+    title: "Accordion",
+    description: "Check expanded state management and keyboard interaction.",
+  },
+  {
+    path: "select",
+    title: "Custom Select",
+    description: "Play with the Selectmenu API and stylable option lists.",
+  },
+  {
+    path: "carousel",
+    title: "Carousel",
+    description:
+      "Review scroll markers, snap behaviour, and experimental buttons.",
+  },
+];
 ---
 
 <Layout title="Astro + Tailwind CSS 4">
   <main
-    class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-8"
+    class="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-16 text-center sm:text-left"
   >
-    <div class="max-w-2xl mx-auto text-center">
-      <h1 class="text-5xl font-bold text-gray-900 mb-6">
-        Welcome to <span class="text-primary">Astro</span>
+    <section
+      class="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center"
+    >
+      <h1 class="text-5xl font-bold text-gray-900 sm:text-6xl">
+        Welcome to <span class="text-primary">Frontendisti Accessibility</span>
       </h1>
-      <p class="text-xl text-gray-600 mb-8">
-        Built with Tailwind CSS 4 and powered by Bun
+      <p class="text-lg text-gray-600 sm:text-xl">
+        A living playground for accessible UI primitives built with Astro,
+        Tailwind CSS 4, and Bun.
       </p>
-      <div class="flex gap-4 justify-center">
+      <div class="flex flex-wrap justify-center gap-4">
         <a
           href="https://astro.build"
-          class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors"
+          class="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           Learn Astro
         </a>
         <a
           href="https://tailwindcss.com"
-          class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+          class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 shadow-sm transition hover:border-primary/40 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
           Tailwind Docs
         </a>
       </div>
-    </div>
+    </section>
+
+    <section class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {
+        tiles.map(({ path, title, description }) => {
+          const href = `${basePath}${path}`;
+          return (
+            <a
+              href={href}
+              class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-6 text-left shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl focus-visible:-translate-y-2 focus-visible:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <span class="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
+              <div class="relative flex h-full flex-col justify-between gap-4">
+                <div class="flex items-center justify-between gap-3">
+                  <h2 class="text-2xl font-semibold text-gray-900">{title}</h2>
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white group-focus-visible:bg-primary group-focus-visible:text-white">
+                    →
+                  </span>
+                </div>
+                <p class="text-sm text-gray-600">{description}</p>
+              </div>
+            </a>
+          );
+        })
+      }
+    </section>
   </main>
 </Layout>

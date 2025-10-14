@@ -3,21 +3,56 @@ import Layout from "../layouts/Layout.astro";
 
 const sectionClassName =
   "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
-const selectWrapperClassName =
-  "w-full max-w-md space-y-3 text-left";
-const labelClassName =
-  "block text-sm font-medium text-slate-700";
-const noteClassName =
-  "text-sm text-slate-600";
+const selectWrapperClassName = "w-full max-w-md space-y-3 text-left";
+const labelClassName = "block text-sm font-medium text-slate-700";
+const noteClassName = "text-sm text-slate-600";
+const baseUrl = import.meta.env.BASE_URL || "/";
+const basePath = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const speakers = [
+  {
+    value: "martin-pesout",
+    name: "Martin Pešout",
+    image: "martin-pesout.webp",
+    alt: "Martin Pešout",
+  },
+  {
+    value: "zuzana-sumlanska",
+    name: "Zuzana Šumlanská",
+    image: "zuzana-sumlanska.webp",
+    alt: "Zuzana Šumlanská",
+  },
+  {
+    value: "krystof-klaban",
+    name: "Kryštof Klaban",
+    image: "krystof-klaban.webp",
+    alt: "Kryštof Klaban",
+  },
+  {
+    value: "viktor-danko",
+    name: "Viktor Daňko",
+    image: "viktor-danko.webp",
+    alt: "Viktor Daňko",
+  },
+  {
+    value: "lukas-chylik",
+    name: "Lukáš Chylík",
+    image: "lukas-chylik.webp",
+    alt: "Lukáš Chylík",
+  },
+];
+const assetPath = (file: string) => `${basePath}images/speakers/${file}`;
 ---
 
 <Layout title="Select">
-  <main class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16">
+  <div class="flex items-center justify-center h-full">
     <section class={sectionClassName}>
       <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">Custom Select Pattern Playground</h1>
+        <h1 class="text-4xl font-semibold text-gray-900">
+          Custom Select Pattern Playground
+        </h1>
         <p class="text-lg text-gray-700">
-          Explore the emerging Selectmenu API with a stylable, accessible dropdown.
+          Explore the emerging Selectmenu API with a stylable, accessible
+          dropdown.
         </p>
       </header>
 
@@ -25,266 +60,259 @@ const noteClassName =
         <label for="speaker-select" class={labelClassName}>
           Choose a speaker
         </label>
-        <select id="speaker-select" class="custom-select" aria-describedby="select-note">
+        <select
+          id="speaker-select"
+          class="custom-select"
+          aria-describedby="select-note"
+        >
           <button type="button" class="select-trigger primary">
             <small class="select-subtitle">Featured speaker</small>
             <div class="select-display">
               <selectedcontent></selectedcontent>
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path fill="currentColor" d="m7 10l5 5l5-5z" />
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path fill="currentColor" d="m7 10l5 5l5-5z"></path>
               </svg>
             </div>
           </button>
           <div class="scrollable">
-            <option value="Una Kravets" selected>
-              <span class="sr-only">Una Kravets</span>
-              <div class="custom-option">
-                <span class="avatar">
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://pbs.twimg.com/profile_images/1587634978308997121/u7009cGe_400x400.jpg"
-                    alt="Una Kravets"
-                    loading="lazy"
-                  />
-                </span>
-                <span class="option-text">Una Kravets</span>
-              </div>
-            </option>
-            <option value="Bramus Van Damme">
-              <span class="sr-only">Bramus Van Damme</span>
-              <div class="custom-option">
-                <span class="avatar">
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://pbs.twimg.com/profile_images/1276240813333401600/brd0hSfW_400x400.jpg"
-                    alt="Bramus Van Damme"
-                    loading="lazy"
-                  />
-                </span>
-                <span class="option-text">Bramus Van Damme</span>
-              </div>
-            </option>
-            <option value="Adam Argyle">
-              <span class="sr-only">Adam Argyle</span>
-              <div class="custom-option">
-                <span class="avatar">
-                  <img
-                    width="20"
-                    height="20"
-                    src="https://pbs.twimg.com/profile_images/1720589781476982784/P9Ld4vC5_400x400.jpg"
-                    alt="Adam Argyle"
-                    loading="lazy"
-                  />
-                </span>
-                <span class="option-text">Adam Argyle</span>
-              </div>
-            </option>
+            {speakers.map(({ value, name, image, alt }) => (
+              <option value={value} selected={value === speakers[0].value}>
+                <span class="sr-only">{name}</span>
+                <div class="custom-option">
+                  <span class="avatar">
+                    <img
+                      width="32"
+                      height="32"
+                      src={assetPath(image)}
+                      alt={alt}
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="option-text">{name}</span>
+                </div>
+              </option>
+            ))}
           </div>
         </select>
         <p id="select-note" class={noteClassName}>
-          Works best in Chromium browsers with the Selectmenu API enabled. Others will display a native select.
+          Works best in Chromium browsers with the Selectmenu API enabled.
+          Others will display a native select.
         </p>
       </div>
     </section>
-  </main>
+  </div>
 
   <style>
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+    @import "https://unpkg.com/open-props" layer(design.system);
+    @import "https://unpkg.com/open-props/normalize.min.css" layer(demo.support);
+    @import "https://unpkg.com/open-props/buttons.min.css" layer(demo.support);
+
+    :root {
+      --link: var(--color-primary);
     }
 
-    .custom-select {
-      appearance: base-select;
-      font-size: 1rem;
-      color: inherit;
+    select {
+      &, &::picker(select) {
+        appearance: base-select;
+      }
+
+      font-size: var(--font-size-1);
       background: none;
       padding: 0;
-      min-inline-size: 22ch;
-    }
 
-    .custom-select::picker(select) {
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s var(--ease-out-3, ease),
-        display 0.2s allow-discrete,
-        overlay 0.2s allow-discrete;
-      background: color-mix(in oklch, var(--color-primary) 12%, white 88%);
-      border-radius: 1.25rem;
-      margin-block: 0.5rem;
-      padding: 0;
-      box-shadow:
-        0 24px 48px -24px var(--color-popover-shadow-strong),
-        0 12px 24px -12px var(--color-popover-shadow-soft);
-      border: 1px solid var(--color-popover-border);
-    }
+      &::picker(select) {
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s var(--ease-out-3),
+          display 0.2s allow-discrete,
+          overlay 0.2s allow-discrete;
+      }
 
-    .custom-select::picker-icon {
-      display: none;
-    }
+      &::picker-icon {
+        display: none;
+      }
 
-    .custom-select:not(:open)::picker(select) {
-      opacity: 0;
-      transform: scale(0.94);
-    }
-
-    .custom-select:open::picker(select) {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .custom-select selectedcontent > * {
-      transition:
-        transform 0.45s var(--ease-spring-4, ease),
-        opacity 0.45s;
-      @starting-style {
+      &:not(:open)::picker(select) {
         opacity: 0;
-        transform: translateY(8px);
+        transform: scale(0.95);
       }
-      opacity: 1;
-    }
 
-    .select-trigger {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-      inline-size: 100%;
-      padding: 0.9rem 1.3rem;
-      border-radius: 9999px;
-      border: none;
-      cursor: pointer;
-      color: white;
-      background-color: var(--color-primary);
-      transition:
-        background-color 0.25s ease,
-        filter 0.25s ease;
-    }
-
-    .select-trigger.primary small {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      opacity: 0.75;
-    }
-
-    .select-trigger:focus {
-      outline: none;
-      filter: drop-shadow(0 0 0.55rem var(--color-primary));
-      background-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
-    }
-
-    .select-trigger:hover {
-      background-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
-    }
-
-    .select-display {
-      inline-size: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .select-trigger svg {
-      inline-size: 1.5rem;
-      block-size: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .custom-select:open > .select-trigger svg {
-      transform: rotate(0.5turn);
-    }
-
-    .custom-select > div {
-      min-inline-size: 100%;
-    }
-
-    @supports (min-inline-size: anchor-size(self-inline)) {
-      .custom-select > div {
-        min-inline-size: max(100%, anchor-size(self-inline));
+      &:open::picker(select) {
+        opacity: 1;
+        transform: scale(1);
       }
-    }
 
-    .custom-select > div.scrollable {
-      max-block-size: 20lh;
-      scrollbar-width: thin;
-    }
+      selectedcontent > * {
+        transition:
+          transform 1s var(--ease-spring-4),
+          display 1s allow-discrete,
+          opacity 1s;
 
-    .custom-select > div option {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.85rem 1rem;
-      font-size: 1rem;
-      border-radius: 0.9rem;
-      cursor: pointer;
-      background: transparent;
-      color: inherit;
-      outline-offset: -1px;
-    }
+        @starting-style {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        opacity: 1;
+      }
 
-    .custom-select > div option::checkmark {
-      font-weight: 700;
-    }
+      > button {
+        --_text: var(--text-1);
 
-    .custom-select > div option:is(:hover, :focus) {
-      background: color-mix(in oklch, var(--color-primary) 15%, white 85%);
-    }
+        &:focus-visible {
+          outline-offset: -3px;
+        }
 
-    .custom-select > div option:is(:checked) {
-      background: var(--color-primary);
-      color: white;
-      font-weight: 600;
+        &:has(selectedcontent) {
+          align-items: start;
+          min-inline-size: 20ch;
+          flex-direction: column;
+        }
+
+        &.primary {
+          --_bg: var(--link);
+          --_border: none;
+          --_text: var(--surface-1);
+          --_ink-shadow: none;
+        }
+
+        > div {
+          inline-size: 100%;
+          display: flex;
+          justify-content: space-between;
+          gap: var(--size-3);
+        }
+
+        & > small {
+          color: var(--text-2);
+        }
+
+        & svg {
+          inline-size: 2ch;
+          transition: transform 0.3s var(--ease-elastic-out-2);
+        }
+      }
+
+      &:open > button svg {
+        transform: rotate(0.5turn);
+      }
+
+      &::picker(select) {
+        background: light-dark(white, var(--surface-2));
+        border-radius: var(--radius-2);
+        padding: 0;
+        margin-block: 5px;
+        box-shadow: var(--shadow-5);
+
+        @media (forced-colors: none) {
+          border: none;
+        }
+      }
+
+      > div {
+        min-inline-size: calc(anchor-size(self-inline) + 20px);
+        scroll-behavior: smooth;
+
+        &.scrollable {
+          max-block-size: 20lh;
+          scrollbar-width: thin;
+        }
+
+        & hr {
+          margin-block: var(--size-2);
+        }
+
+        & label {
+          display: block;
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          background: var(--surface-3);
+          font-size: var(--font-size-0);
+          color: var(--text-2);
+          font-weight: var(--font-weight-7);
+          padding-block: var(--size-1);
+          padding-inline: var(--size-3);
+        }
+
+        & option {
+          display: flex;
+          align-items: center;
+          gap: var(--size-3);
+          padding-block: var(--size-2);
+          padding-inline: var(--size-3);
+          font-size: var(--font-size-1);
+
+          cursor: pointer;
+          outline-offset: -1px;
+
+          &::checkmark {
+            font-weight: var(--font-weight-8);
+          }
+
+          &:focus-visible {
+            outline-offset: -1px;
+          }
+
+          &:is(:focus, :hover) {
+            background: oklch(from var(--link) l c h / 25%);
+            color: inherit;
+          }
+
+          &:is(:checked) {
+            background: var(--link);
+            color: var(--surface-1);
+            font-weight: var(--font-weight-8);
+          }
+        }
+      }
     }
 
     .custom-option {
-      display: inline-flex;
+      display: flex;
+      gap: var(--size-3);
       align-items: center;
-      gap: 0.75rem;
-    }
+      justify-content: space-between;
 
-    .custom-option .option-text {
-      font-weight: 500;
-    }
-
-    .custom-option .avatar {
-      inline-size: 2rem;
-      block-size: 2rem;
-      border-radius: 9999px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 2px solid color-mix(in oklch, var(--color-primary) 35%, white 65%);
-    }
-
-    .custom-option img {
-      inline-size: 100%;
-      block-size: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    @supports not (appearance: base-select) {
-      .custom-select {
-        all: unset;
-        display: block;
+      .primary & {
+        display: grid;
+        gap: var(--size-1);
       }
-      .custom-select > button,
-      .custom-select::picker(select),
-      .custom-select > div {
+
+      &:has(.description) {
+        display: grid;
+        justify-items: start;
+        gap: var(--size-2);
+        padding-block: var(--size-2);
+        text-shadow: none;
+
+        & .description {
+          color: var(--text-2);
+        }
+      }
+
+      option:is(:checked) & .description {
+        font-weight: normal;
+        color: var(--surface-2);
+      }
+
+      selectedcontent & .description {
         display: none;
       }
+    }
+
+    .option-text {
+      flex: 2;
+    }
+
+    .avatar {
+      border-radius: var(--radius-round);
+      overflow: hidden;
     }
   </style>
 </Layout>

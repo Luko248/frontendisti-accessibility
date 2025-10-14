@@ -12,9 +12,7 @@ const panelClassName =
 ---
 
 <Layout title="Accordion">
-  <main
-    class="flex min-h-[calc(100vh-var(--nav-height))] items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-16"
-  >
+  <div class="flex items-center justify-center h-full">
     <section class={sectionClassName}>
       <header class="space-y-4">
         <h1 class="text-4xl font-semibold text-gray-900">
@@ -43,12 +41,19 @@ const panelClassName =
               </span>
               <span>Accordion</span>
             </span>
-            <span aria-hidden="true" class="ml-auto text-sm font-medium text-white/80">
+            <span
+              aria-hidden="true"
+              class="ml-auto text-sm font-medium text-white/80"
+            >
               <span class="group-open:hidden">Open</span>
               <span class="hidden group-open:inline">Close</span>
             </span>
-            <span class="sr-only group-open:hidden">Expand accordion content</span>
-            <span class="sr-only hidden group-open:inline">Collapse accordion content</span>
+            <span class="sr-only group-open:hidden"
+              >Expand accordion content</span
+            >
+            <span class="sr-only hidden group-open:inline"
+              >Collapse accordion content</span
+            >
           </summary>
           <div
             id="accordion-panel"
@@ -74,7 +79,7 @@ const panelClassName =
         </details>
       </div>
     </section>
-  </main>
+  </div>
 
   <style>
     :global(:root) {
@@ -109,27 +114,47 @@ const panelClassName =
     }
 
     #accordionSummary:hover {
-      background-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 85%,
+        white 15%
+      );
     }
 
     #accordionSummary:focus {
       outline: none;
       filter: drop-shadow(0 0 0.65rem var(--color-primary));
-      background-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 80%,
+        white 20%
+      );
     }
 
     #accordionDemo[open] #accordionSummary {
-      background-color: color-mix(in oklch, var(--color-primary) 70%, black 30%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 70%,
+        black 30%
+      );
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
 
     #accordionDemo[open] #accordionSummary:hover {
-      background-color: color-mix(in oklch, var(--color-primary) 65%, black 35%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 65%,
+        black 35%
+      );
     }
 
     #accordionDemo[open] #accordionSummary:focus {
-      background-color: color-mix(in oklch, var(--color-primary) 68%, black 32%);
+      background-color: color-mix(
+        in oklch,
+        var(--color-primary) 68%,
+        black 32%
+      );
       filter: drop-shadow(0 0 0.75rem var(--color-primary));
     }
 
@@ -140,6 +165,5 @@ const panelClassName =
     #accordionSummary::-webkit-details-marker {
       display: none;
     }
-
   </style>
 </Layout>
