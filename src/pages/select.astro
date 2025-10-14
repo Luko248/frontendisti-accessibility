@@ -46,8 +46,8 @@ const assetPath = (file: string) => `${basePath}images/speakers/${file}`;
 <Layout title="Select">
   <div class="flex items-center justify-center h-full">
     <section class={sectionClassName}>
-      <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">
+      <header class="space-y-4 text-center">
+        <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
           Custom Select Pattern Playground
         </h1>
         <p class="text-lg text-gray-700">
@@ -81,23 +81,25 @@ const assetPath = (file: string) => `${basePath}images/speakers/${file}`;
             </div>
           </button>
           <div class="scrollable">
-            {speakers.map(({ value, name, image, alt }) => (
-              <option value={value} selected={value === speakers[0].value}>
-                <span class="sr-only">{name}</span>
-                <div class="custom-option">
-                  <span class="avatar">
-                    <img
-                      width="32"
-                      height="32"
-                      src={assetPath(image)}
-                      alt={alt}
-                      loading="lazy"
-                    />
-                  </span>
-                  <span class="option-text">{name}</span>
-                </div>
-              </option>
-            ))}
+            {
+              speakers.map(({ value, name, image, alt }) => (
+                <option value={value} selected={value === speakers[0].value}>
+                  <span class="sr-only">{name}</span>
+                  <div class="custom-option">
+                    <span class="avatar">
+                      <img
+                        width="32"
+                        height="32"
+                        src={assetPath(image)}
+                        alt={alt}
+                        loading="lazy"
+                      />
+                    </span>
+                    <span class="option-text">{name}</span>
+                  </div>
+                </option>
+              ))
+            }
           </div>
         </select>
         <p id="select-note" class={noteClassName}>
@@ -118,7 +120,8 @@ const assetPath = (file: string) => `${basePath}images/speakers/${file}`;
     }
 
     select {
-      &, &::picker(select) {
+      &,
+      &::picker(select) {
         appearance: base-select;
       }
 

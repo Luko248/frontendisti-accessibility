@@ -15,8 +15,8 @@ const closeButtonClassName =
     <section
       class="flex w-full max-w-3xl flex-col items-center gap-10 text-center"
     >
-      <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">
+      <header class="space-y-4 text-center">
+        <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
           Modal Pattern Playground
         </h1>
         <p class="text-lg text-gray-700">
@@ -47,8 +47,7 @@ const closeButtonClassName =
           </p>
           <button
             type="button"
-            command="close"
-            commandfor="myDialog"
+            data-modal-action="close"
             aria-controls="myDialog"
             class={closeButtonClassName}
           >
@@ -58,9 +57,9 @@ const closeButtonClassName =
 
         <button
           type="button"
-          command="show-modal"
-          commandfor="myDialog"
+          data-modal-action="open"
           aria-haspopup="dialog"
+          aria-expanded="false"
           aria-controls="myDialog"
           data-variant="primary"
           class={openButtonClassName}

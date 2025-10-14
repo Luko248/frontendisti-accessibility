@@ -8,8 +8,8 @@ const noteClassName = "text-sm text-slate-600";
 <Layout title="Carousel">
   <div class="flex items-center justify-center h-full">
     <section class={sectionClassName}>
-      <header class="space-y-4">
-        <h1 class="text-4xl font-semibold text-gray-900">
+      <header class="space-y-4 text-center">
+        <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
           Carousel Pattern Playground
         </h1>
         <p class="text-lg text-gray-700">
@@ -75,11 +75,11 @@ const noteClassName = "text-sm text-slate-600";
       box-sizing: border-box;
     }
 
-    .carousel-demo .carousel {
+    .carousel {
       display: grid;
       scroll-snap-type: x mandatory;
       grid-template-columns: repeat(3, 100cqi);
-      overflow-x: auto;
+      overflow: auto hidden;
       anchor-name: --carousel;
       column-gap: 1rem;
       border-radius: 1.25rem;
@@ -87,13 +87,13 @@ const noteClassName = "text-sm text-slate-600";
       scroll-behavior: smooth;
       counter-reset: snap-counter 0;
       counter-increment: snap-counter;
+
+      &::-webkit-scrollbar {
+        height: 0 !important;
+      }
     }
 
-    .carousel-demo .carousel::-webkit-scrollbar {
-      height: 0;
-    }
-
-    .carousel-demo .carousel::scroll-marker-group {
+    .carousel::scroll-marker-group {
       display: flex;
       block-size: 1.5rem;
       gap: 1rem;
@@ -101,7 +101,7 @@ const noteClassName = "text-sm text-slate-600";
       margin-block-start: 1rem;
     }
 
-    .carousel-demo .carousel::scroll-button(*) {
+    .carousel::scroll-button(*) {
       display: grid;
       position: absolute;
       position-anchor: --carousel;
@@ -110,6 +110,7 @@ const noteClassName = "text-sm text-slate-600";
       font-weight: bold;
       font-size: 1.5rem;
       line-height: 1;
+      text-box: trim-both ex alphabetic;
       aspect-ratio: 1;
       inline-size: 2.25rem;
       border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
@@ -130,32 +131,32 @@ const noteClassName = "text-sm text-slate-600";
       text-decoration: none;
     }
 
-    .carousel-demo .carousel::scroll-button(*):disabled {
+    .carousel::scroll-button(*):disabled {
       opacity: 0;
       translate: 0;
     }
 
-    .carousel-demo .carousel::scroll-button(left) {
+    .carousel::scroll-button(left) {
       content: "‹";
       position-area: center left;
       translate: calc(100% + 0.5rem) 0;
     }
 
-    .carousel-demo .carousel::scroll-button(right) {
+    .carousel::scroll-button(right) {
       content: "›";
       position-area: center right;
       translate: calc(-100% - 0.5rem) 0;
     }
 
-    .carousel-demo .carousel::scroll-button(*):hover,
-    .carousel-demo .carousel::scroll-button(*):focus-visible {
+    .carousel::scroll-button(*):hover,
+    .carousel::scroll-button(*):focus-visible {
       --button-bg: var(--color-primary);
       border-color: color-mix(in oklch, var(--color-primary) 75%, white 25%);
       scale: 1.1;
       outline: none;
     }
 
-    .carousel-demo .carousel > div {
+    .carousel > div {
       container-type: scroll-state size;
       display: grid;
       place-items: center;
@@ -167,7 +168,7 @@ const noteClassName = "text-sm text-slate-600";
       scroll-snap-align: center;
     }
 
-    .carousel-demo .carousel > div::scroll-marker {
+    .carousel > div::scroll-marker {
       content: counter(snap-counter) / attr(aria-label);
       background-color: var(
         --marker-bg,
@@ -191,22 +192,22 @@ const noteClassName = "text-sm text-slate-600";
       border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
     }
 
-    .carousel-demo .carousel > div::scroll-marker:target-current {
+    .carousel > div::scroll-marker:target-current {
       --marker-bg: var(--color-primary);
       scale: 1.2;
     }
 
-    .carousel-demo .carousel > div::scroll-marker:hover {
+    .carousel > div::scroll-marker:hover {
       --marker-bg: color-mix(in oklch, var(--color-primary) 75%, white 25%);
       border-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
     }
 
-    .carousel-demo .carousel > div::scroll-marker:target-before,
-    .carousel-demo .carousel > div::scroll-marker:target-after {
+    .carousel > div::scroll-marker:target-before,
+    .carousel > div::scroll-marker:target-after {
       scale: 0.8;
     }
 
-    .carousel-demo .carousel > div img {
+    .carousel > div img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -214,9 +215,9 @@ const noteClassName = "text-sm text-slate-600";
     }
 
     @supports not (scroll-marker-group: after) {
-      .carousel-demo .carousel::scroll-marker-group,
-      .carousel-demo .carousel::scroll-button(left),
-      .carousel-demo .carousel::scroll-button(right) {
+      .carousel::scroll-marker-group,
+      .carousel::scroll-button(left),
+      .carousel::scroll-button(right) {
         display: none;
       }
     }
