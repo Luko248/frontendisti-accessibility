@@ -1,0 +1,279 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Scrollspy">
+  <div class="flex items-center justify-center h-full">
+    <section
+      class="flex w-full max-w-3xl flex-col items-center gap-10 text-center"
+    >
+      <header class="space-y-4 text-center mx-auto">
+        <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
+          Scrollspy Pattern Playground
+        </h1>
+        <p class="text-lg text-gray-700">
+          Explore native scroll markers with accessible navigation and smooth
+          scrolling behavior.
+        </p>
+      </header>
+
+      <div class="scroll-spy">
+        <div class="carousel carousel--vertical">
+          <section aria-label="A vertical scroller">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              A vertical scroller
+            </h2>
+            <p class="text-base text-gray-700">
+              This scrollspy implementation uses native CSS scroll markers to
+              create an accessible navigation experience. As you scroll through
+              the content, the corresponding navigation item automatically
+              highlights.
+            </p>
+            <p class="text-base text-gray-700">
+              The vertical scrolling behavior is enhanced with smooth scrolling
+              and proper keyboard navigation. Users can tab through the
+              navigation markers and press Enter to jump to any section.
+            </p>
+            <p class="text-base text-gray-700">
+              Screen readers announce the current section as you navigate,
+              providing clear context about where you are in the document. Each
+              section is properly labeled with semantic HTML and ARIA
+              attributes.
+            </p>
+          </section>
+
+          <section aria-label="Markers for sections">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              Markers for sections
+            </h2>
+            <p class="text-base text-gray-700">
+              The scroll marker API provides native browser support for creating
+              navigation indicators that automatically track scroll position.
+              This eliminates the need for JavaScript-based intersection
+              observers.
+            </p>
+            <p class="text-base text-gray-700">
+              Each marker is generated from the section's aria-label attribute,
+              ensuring consistency between navigation and content. The markers
+              respond to both mouse and keyboard interactions.
+            </p>
+            <p class="text-base text-gray-700">
+              The active state styling uses your theme's primary color,
+              maintaining visual consistency across all components in the
+              playground. Focus states follow the same pattern as other
+              interactive elements.
+            </p>
+            <h4 class="text-xl font-medium text-gray-800">
+              Extended content demonstration
+            </h4>
+            <p class="text-base text-gray-700">
+              This longer section demonstrates how the scroll marker remains
+              highlighted throughout the entire section's scroll range. The
+              marker only changes when you scroll into a different section.
+            </p>
+            <p class="text-base text-gray-700">
+              Container queries are used to make the navigation responsive. On
+              narrow viewports, the markers switch from a vertical sidebar to a
+              horizontal scrollable row at the top.
+            </p>
+            <p class="text-base text-gray-700">
+              The transition between sections is smooth and visually clear.
+              Users always know which section they're currently viewing, whether
+              they're at the beginning, middle, or end of a section.
+            </p>
+            <p class="text-base text-gray-700">
+              Accessibility features include proper ARIA labeling, keyboard
+              navigation support, and focus management. Screen reader users
+              receive announcements when navigating between sections.
+            </p>
+            <p class="text-base text-gray-700">
+              The implementation uses modern CSS features like light-dark() for
+              color adaptation and color-mix() for hover states, providing a
+              polished user experience across different color schemes.
+            </p>
+            <p class="text-base text-gray-700">
+              Forced colors mode is also supported, ensuring the navigation
+              remains usable for users with high contrast settings enabled on
+              their operating system.
+            </p>
+          </section>
+
+          <section aria-label="Grid to lay it all out">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              Grid to lay it all out
+            </h2>
+            <p class="text-base text-gray-700">
+              CSS Grid provides the foundation for this scrollspy layout. Using
+              grid template areas makes the structure clear and maintainable,
+              with the navigation in the "side" area and content in the "main"
+              area.
+            </p>
+            <p class="text-base text-gray-700">
+              The grid adapts to different screen sizes using container queries.
+              This allows the layout to respond based on its own width rather
+              than the viewport, making it truly component-based and reusable.
+            </p>
+            <p class="text-base text-gray-700">
+              Combined with CSS container queries, scroll markers, and modern
+              theming, this pattern demonstrates how far native CSS capabilities
+              have evolved. No JavaScript is needed for the core scrollspy
+              functionality, keeping it lightweight and performant.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .scroll-spy {
+      display: grid;
+      gap: 0.25rem;
+      grid-template-areas: "side main";
+      grid-template-columns: var(--size-content-1, 12rem) 1fr;
+      overflow: clip;
+      overflow-clip-margin: 1rem;
+      block-size: 60svh;
+      inline-size: 100cqi;
+      max-inline-size: 80ch;
+      container-type: size;
+      border: 1px solid rgb(226 232 240);
+      border-radius: 0.75rem;
+      background-color: white;
+      box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    @container (inline-size <= 50ch) {
+      .scroll-spy {
+        gap: 0px;
+        grid-template-areas:
+          "side"
+          "main";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+      }
+    }
+
+    .carousel {
+      grid-area: main;
+      scroll-snap-type: none;
+      scroll-marker-group: before;
+      display: grid;
+      row-gap: 10svh;
+      position: relative;
+      z-index: 2;
+      padding: 1rem;
+      scrollbar-width: thin;
+      scroll-behavior: smooth;
+      overflow-y: auto;
+    }
+
+    .carousel::scroll-marker-group {
+      grid-area: side;
+      display: grid;
+      align-content: start;
+      justify-items: stretch;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-right: 1px solid rgb(226 232 240);
+      background-color: rgb(248 250 252);
+    }
+
+    @container (inline-size <= 50ch) {
+      .carousel::scroll-marker-group {
+        grid-auto-flow: column;
+        max-width: 100cqi;
+        block-size: 1.5lh;
+        overflow-x: auto;
+        margin-block-start: 0;
+        scrollbar-width: none;
+        scroll-padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgb(226 232 240);
+      }
+    }
+
+    .carousel > section {
+      place-items: start;
+      place-content: start;
+      display: grid;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    @container (inline-size <= 50ch) {
+      .carousel > section {
+        padding: 1rem;
+      }
+    }
+
+    .carousel > section::scroll-marker {
+      --_bg: transparent;
+      content: attr(aria-label) / attr(aria-label);
+      padding-inline: 1.75ch;
+      padding-block: 1ch;
+      color: rgb(71 85 105);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+      background: var(--_bg);
+      border: 1px solid transparent;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    @container (inline-size <= 50ch) {
+      .carousel > section::scroll-marker {
+        white-space: nowrap;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .carousel > section::scroll-marker {
+        border-width: 0px;
+      }
+    }
+
+    .carousel > section::scroll-marker:is(:hover, :target-current) {
+      --_bg: var(--color-primary);
+      color: white;
+      box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+      border-color: var(--color-primary);
+    }
+
+    .carousel > section::scroll-marker:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    @media (forced-colors: active) {
+      .carousel > section::scroll-marker:is(:hover, :target-current) {
+        border-width: 1px;
+      }
+    }
+
+    .carousel > section::scroll-marker:hover {
+      --_bg: color-mix(in oklch, var(--color-primary) 85%, white 15%);
+    }
+
+    .carousel > section::scroll-marker:active {
+      border-color: var(--color-primary);
+    }
+
+    .carousel > section::scroll-marker:hover:target-current {
+      border-color: var(--color-primary);
+      --_bg: color-mix(in oklch, var(--color-primary) 80%, white 20%);
+    }
+
+    section {
+      place-items: start;
+    }
+  </style>
+</Layout>
