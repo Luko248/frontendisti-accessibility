@@ -6,15 +6,34 @@ export interface Props {
 }
 
 const { title } = Astro.props;
-const currentPath =
-  Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/+$/, "");
+const baseUrl = import.meta.env.BASE_URL || "/";
+const configuredBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const stripSlashes = (value: string) =>
+  value.replace(/^\/+/, "").replace(/\/+$/, "");
+const currentPathKey = (() => {
+  const rawPath = Astro.url.pathname.startsWith(configuredBase)
+    ? Astro.url.pathname.slice(configuredBase.length)
+    : Astro.url.pathname;
+  return stripSlashes(rawPath);
+})();
+const derivedBasePath = (() => {
+  if (configuredBase !== "/") {
+    return configuredBase;
+  }
+  let resolved = Astro.url.pathname;
+  if (currentPathKey) {
+    const pattern = new RegExp(`/${currentPathKey}/?$`);
+    resolved = resolved.replace(pattern, "/");
+  }
+  return resolved.endsWith("/") ? resolved : `${resolved}/`;
+})();
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/modal", label: "Modal" },
-  { href: "/popover", label: "Popover" },
-  { href: "/accordion", label: "Accordion" },
-  { href: "/select", label: "Select" },
-  { href: "/carousel", label: "Carousel" },
+  { path: "", label: "Home" },
+  { path: "modal", label: "Modal" },
+  { path: "popover", label: "Popover" },
+  { path: "accordion", label: "Accordion" },
+  { path: "select", label: "Select" },
+  { path: "carousel", label: "Carousel" },
 ];
 const navHeight = "3.5rem";
 ---
@@ -43,8 +62,10 @@ const navHeight = "3.5rem";
           class="flex flex-wrap items-center justify-center gap-4 py-3 text-sm font-medium text-slate-700"
         >
           {
-            links.map(({ href, label }) => {
-              const isCurrent = currentPath === href;
+            links.map(({ path, label }) => {
+              const href = `${derivedBasePath}${path}`;
+              const linkKey = stripSlashes(path);
+              const isCurrent = currentPathKey === linkKey;
               return (
                 <li>
                   <a
