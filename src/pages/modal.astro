@@ -47,7 +47,8 @@ const closeButtonClassName =
           </p>
           <button
             type="button"
-            data-modal-action="close"
+            command="close"
+            commandfor="myDialog"
             aria-controls="myDialog"
             class={closeButtonClassName}
           >
@@ -57,9 +58,9 @@ const closeButtonClassName =
 
         <button
           type="button"
-          data-modal-action="open"
+          command="show-modal"
+          commandfor="myDialog"
           aria-haspopup="dialog"
-          aria-expanded="false"
           aria-controls="myDialog"
           data-variant="primary"
           class={openButtonClassName}
