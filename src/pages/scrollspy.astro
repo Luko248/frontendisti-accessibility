@@ -14,7 +14,7 @@ import Layout from "../layouts/Layout.astro";
         <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
           Scrollspy Pattern Playground
         </h1>
-        <p class="text-lg text-gray-700">
+        <p class="text-lg text-gray-800">
           Explore native scroll markers with accessible navigation and smooth
           scrolling behavior.
         </p>
@@ -26,18 +26,18 @@ import Layout from "../layouts/Layout.astro";
             <h2 class="text-2xl font-semibold text-gray-900">
               A vertical scroller
             </h2>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               This scrollspy implementation uses native CSS scroll markers to
               create an accessible navigation experience. As you scroll through
               the content, the corresponding navigation item automatically
               highlights.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The vertical scrolling behavior is enhanced with smooth scrolling
               and proper keyboard navigation. Users can tab through the
               navigation markers and press Enter to jump to any section.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Screen readers announce the current section as you navigate,
               providing clear context about where you are in the document. Each
               section is properly labeled with semantic HTML and ARIA
@@ -49,18 +49,18 @@ import Layout from "../layouts/Layout.astro";
             <h2 class="text-2xl font-semibold text-gray-900">
               Markers for sections
             </h2>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The scroll marker API provides native browser support for creating
               navigation indicators that automatically track scroll position.
               This eliminates the need for JavaScript-based intersection
               observers.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Each marker is generated from the section's aria-label attribute,
               ensuring consistency between navigation and content. The markers
               respond to both mouse and keyboard interactions.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The active state styling uses your theme's primary color,
               maintaining visual consistency across all components in the
               playground. Focus states follow the same pattern as other
@@ -69,32 +69,32 @@ import Layout from "../layouts/Layout.astro";
             <h4 class="text-xl font-medium text-gray-800">
               Extended content demonstration
             </h4>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               This longer section demonstrates how the scroll marker remains
               highlighted throughout the entire section's scroll range. The
               marker only changes when you scroll into a different section.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Container queries are used to make the navigation responsive. On
               narrow viewports, the markers switch from a vertical sidebar to a
               horizontal scrollable row at the top.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The transition between sections is smooth and visually clear.
               Users always know which section they're currently viewing, whether
               they're at the beginning, middle, or end of a section.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Accessibility features include proper ARIA labeling, keyboard
               navigation support, and focus management. Screen reader users
               receive announcements when navigating between sections.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The implementation uses modern CSS features like light-dark() for
               color adaptation and color-mix() for hover states, providing a
               polished user experience across different color schemes.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Forced colors mode is also supported, ensuring the navigation
               remains usable for users with high contrast settings enabled on
               their operating system.
@@ -105,18 +105,18 @@ import Layout from "../layouts/Layout.astro";
             <h2 class="text-2xl font-semibold text-gray-900">
               Grid to lay it all out
             </h2>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               CSS Grid provides the foundation for this scrollspy layout. Using
               grid template areas makes the structure clear and maintainable,
               with the navigation in the "side" area and content in the "main"
               area.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               The grid adapts to different screen sizes using container queries.
               This allows the layout to respond based on its own width rather
               than the viewport, making it truly component-based and reusable.
             </p>
-            <p class="text-base text-gray-700">
+            <p class="text-base text-gray-800">
               Combined with CSS container queries, scroll markers, and modern
               theming, this pattern demonstrates how far native CSS capabilities
               have evolved. No JavaScript is needed for the core scrollspy
@@ -217,7 +217,7 @@ import Layout from "../layouts/Layout.astro";
       content: attr(aria-label) / attr(aria-label);
       padding-inline: 1.75ch;
       padding-block: 1ch;
-      color: rgb(71 85 105);
+      color: rgb(51 65 85);
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       text-decoration: none;

@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 const sectionClassName =
   "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
-const noteClassName = "text-sm text-slate-600";
+const noteClassName = "text-sm text-slate-700";
 ---
 
 <Layout
@@ -15,7 +15,7 @@ const noteClassName = "text-sm text-slate-600";
         <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
           Carousel Pattern Playground
         </h1>
-        <p class="text-lg text-gray-700">
+        <p class="text-lg text-gray-800">
           Modern scroll-linked carousel using scroll markers and
           anchor-positioning buttons.
         </p>
@@ -117,11 +117,8 @@ const noteClassName = "text-sm text-slate-600";
       text-box: trim-both ex alphabetic;
       aspect-ratio: 1;
       inline-size: 2.25rem;
-      border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
-      background-color: var(
-        --button-bg,
-        color-mix(in oklch, var(--color-primary) 55%, white 45%)
-      );
+      border: 2px solid var(--color-primary);
+      background-color: var(--button-bg, var(--color-primary));
       place-items: center;
       text-decoration: none;
       transition:
@@ -154,8 +151,8 @@ const noteClassName = "text-sm text-slate-600";
 
     .carousel::scroll-button(*):hover,
     .carousel::scroll-button(*):focus-visible {
-      --button-bg: var(--color-primary);
-      border-color: color-mix(in oklch, var(--color-primary) 75%, white 25%);
+      --button-bg: color-mix(in oklch, var(--color-primary) 85%, white 15%);
+      border-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
       scale: 1.1;
       outline: none;
     }
@@ -174,10 +171,7 @@ const noteClassName = "text-sm text-slate-600";
 
     .carousel > div::scroll-marker {
       content: counter(snap-counter) / attr(aria-label);
-      background-color: var(
-        --marker-bg,
-        color-mix(in oklch, var(--color-primary) 55%, white 45%)
-      );
+      background-color: var(--marker-bg, var(--color-primary));
       inline-size: 1.5rem;
       aspect-ratio: 1;
       display: grid;
@@ -193,17 +187,17 @@ const noteClassName = "text-sm text-slate-600";
         scale 0.25s ease-out,
         background-color 0.25s ease-out,
         border-color 0.25s ease-out;
-      border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
+      border: 2px solid var(--color-primary);
     }
 
     .carousel > div::scroll-marker:target-current {
-      --marker-bg: var(--color-primary);
+      --marker-bg: color-mix(in oklch, var(--color-primary) 80%, black 20%);
       scale: 1.2;
     }
 
     .carousel > div::scroll-marker:hover {
-      --marker-bg: color-mix(in oklch, var(--color-primary) 75%, white 25%);
-      border-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
+      --marker-bg: color-mix(in oklch, var(--color-primary) 85%, white 15%);
+      border-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
     }
 
     .carousel > div::scroll-marker:target-before,

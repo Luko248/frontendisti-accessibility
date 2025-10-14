@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(0.6231 0.1880 259.81);
+  --color-primary: oklch(0.5 0.2 264);
   --color-secondary: oklch(0.5544 0.0407 257.42);
   --color-osm-blue: oklch(0.5535 0.1175 235.08);
   --color-osm-green: oklch(0.7341 0.1246 139.63);
