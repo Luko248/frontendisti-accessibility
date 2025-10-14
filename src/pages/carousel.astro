@@ -33,30 +33,29 @@ const noteClassName = "text-sm text-slate-600";
             aria-label="Slide 1 of 3: playful dog looking toward the camera"
           >
             <img
-              src="https://place.dog/500/500"
+              src="https://placedog.net/500/500"
               alt="Playful dog looking toward the camera"
-              loading="lazy"
             />
           </div>
           <div
             role="group"
             aria-roledescription="slide"
-            aria-label="Slide 2 of 3: resting cat observing the scene"
+            aria-label="Slide 2 of 3: resting cat licking the pillow"
           >
             <img
               src="https://placecats.com/500/500"
-              alt="Resting cat observing the scene"
+              alt="Resting cat licking the pillow"
               loading="lazy"
             />
           </div>
           <div
             role="group"
             aria-roledescription="slide"
-            aria-label="Slide 3 of 3: bear standing in a forest"
+            aria-label="Slide 3 of 3: bear in water"
           >
             <img
               src="https://placebear.com/500/500"
-              alt="Bear standing in a forest"
+              alt="Bear in water"
               loading="lazy"
             />
           </div>
@@ -109,25 +108,28 @@ const noteClassName = "text-sm text-slate-600";
       position: absolute;
       position-anchor: --carousel;
       border-radius: 100vmax;
-      color: var(--color-primary);
+      color: white;
       font-weight: bold;
-      font-size: 2em;
+      font-size: 1.5rem;
       line-height: 1;
       aspect-ratio: 1;
-      inline-size: 2.5rem;
+      inline-size: 2.25rem;
       border: 2px solid color-mix(in oklch, var(--color-primary) 65%, white 35%);
-      background-color: color-mix(
-        in oklch,
-        var(--color-primary) 15%,
-        white 85%
+      background-color: var(
+        --button-bg,
+        color-mix(in oklch, var(--color-primary) 55%, white 45%)
       );
-      backdrop-filter: blur(0.75rem);
+      place-items: center;
+      text-decoration: none;
       transition:
         translate 0.25s ease-out,
         opacity 0.25s ease-out,
-        scale 0.25s ease-out;
+        scale 0.25s ease-out,
+        background-color 0.25s ease-out,
+        border-color 0.25s ease-out;
       cursor: pointer;
-      scale: 1.05;
+      scale: 1;
+      text-decoration: none;
     }
 
     .carousel-demo .carousel::scroll-button(*):disabled {
@@ -136,15 +138,23 @@ const noteClassName = "text-sm text-slate-600";
     }
 
     .carousel-demo .carousel::scroll-button(left) {
-      content: "‹" / "Previous slide";
+      content: "‹";
       position-area: center left;
       translate: calc(100% + 0.5rem) 0;
     }
 
     .carousel-demo .carousel::scroll-button(right) {
-      content: "›" / "Next slide";
+      content: "›";
       position-area: center right;
       translate: calc(-100% - 0.5rem) 0;
+    }
+
+    .carousel-demo .carousel::scroll-button(*):hover,
+    .carousel-demo .carousel::scroll-button(*):focus-visible {
+      --button-bg: var(--color-primary);
+      border-color: color-mix(in oklch, var(--color-primary) 75%, white 25%);
+      scale: 1.1;
+      outline: none;
     }
 
     .carousel-demo .carousel > div {
@@ -186,6 +196,11 @@ const noteClassName = "text-sm text-slate-600";
     .carousel-demo .carousel > div::scroll-marker:target-current {
       --marker-bg: var(--color-primary);
       scale: 1.2;
+    }
+
+    .carousel-demo .carousel > div::scroll-marker:hover {
+      --marker-bg: color-mix(in oklch, var(--color-primary) 75%, white 25%);
+      border-color: color-mix(in oklch, var(--color-primary) 80%, white 20%);
     }
 
     .carousel-demo .carousel > div::scroll-marker:target-before,
