@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 const sectionClassName =
   "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
 const detailsClassName =
-  "group w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg";
+  "group w-full overflow-clip rounded-2xl border border-slate-200 bg-white shadow-lg";
 const summaryClassName =
   "flex w-full items-center justify-between gap-3 rounded-2xl px-6 py-4 text-left text-lg font-semibold text-white leading-snug cursor-pointer transition";
 const panelClassName =
@@ -88,6 +88,7 @@ const panelClassName =
 
     #accordionDemo {
       --details-content_block-size: 0;
+      overflow-clip-margin: 1rem;
     }
 
     #accordionDemo[open] {
@@ -122,8 +123,8 @@ const panelClassName =
     }
 
     #accordionSummary:focus {
-      outline: none;
-      filter: drop-shadow(0 0 0.65rem var(--color-primary));
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
       background-color: color-mix(
         in oklch,
         var(--color-primary) 80%,
@@ -155,7 +156,6 @@ const panelClassName =
         var(--color-primary) 68%,
         black 32%
       );
-      filter: drop-shadow(0 0 0.75rem var(--color-primary));
     }
 
     #accordionSummary::marker {

@@ -26,36 +26,6 @@ const closeButtonClassName =
       </header>
 
       <div class="flex flex-col items-center gap-4">
-        <dialog
-          id="myDialog"
-          class={dialogClassName}
-          style={dialogStyle}
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-          aria-modal="true"
-          closedby="any"
-        >
-          <h3
-            id="modal-title"
-            class="mt-0 text-xl font-semibold text-slate-900"
-          >
-            Dialog Title
-          </h3>
-          <p id="modal-description" class="text-sm text-slate-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia,
-            inventore!
-          </p>
-          <button
-            type="button"
-            command="close"
-            commandfor="myDialog"
-            aria-controls="myDialog"
-            class={closeButtonClassName}
-          >
-            Close modal
-          </button>
-        </dialog>
-
         <button
           type="button"
           command="show-modal"
@@ -65,8 +35,48 @@ const closeButtonClassName =
           data-variant="primary"
           class={openButtonClassName}
         >
-          Open modal
+          Open dialog
         </button>
+
+        <dialog
+          id="myDialog"
+          role="dialog"
+          class={dialogClassName}
+          style={dialogStyle}
+          aria-labelledby="dialog-label"
+          aria-describedby="dialog-desc"
+          aria-modal="true"
+          closedby="any"
+        >
+          <h2
+            id="dialog-label"
+            class="mt-0 text-xl font-semibold text-slate-900"
+          >
+            Important Information
+          </h2>
+          <div id="dialog-desc" class="space-y-3">
+            <p class="text-sm text-slate-600">
+              This dialog provides important details about the functionality.
+              Screen readers will announce this content for better
+              accessibility.
+            </p>
+            <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
+              <li>First information point</li>
+              <li>Second information point</li>
+              <li>Third information point</li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            command="close"
+            commandfor="myDialog"
+            aria-label="Close dialog"
+            aria-controls="myDialog"
+            class={closeButtonClassName}
+          >
+            Close
+          </button>
+        </dialog>
       </div>
     </section>
   </div>
