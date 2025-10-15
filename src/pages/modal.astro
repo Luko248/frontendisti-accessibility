@@ -5,9 +5,9 @@ const dialogClassName =
 const dialogStyle =
   "display: var(--dialog_display, none); opacity: var(--dialog_opacity, 0); translate: 0 var(--dialog_trans-y, 5svb); transition-property: overlay display opacity; transition-duration: 0.3s; transition-behavior: allow-discrete;";
 const openButtonClassName =
-  "inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white shadow transition focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary/70";
+  "inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white shadow transition";
 const closeButtonClassName =
-  "inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-slate-900";
+  "inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700";
 ---
 
 <Layout
@@ -101,7 +101,6 @@ const closeButtonClassName =
     }
 
     button[data-variant="primary"]:focus {
-      filter: drop-shadow(0 0 0.45rem var(--color-primary));
       background-color: color-mix(
         in oklch,
         var(--color-primary) 80%,

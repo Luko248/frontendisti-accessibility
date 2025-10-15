@@ -251,10 +251,6 @@ import Layout from "../layouts/Layout.astro";
       border-color: var(--color-primary);
     }
 
-    .carousel > section::scroll-marker:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
 
     @media (forced-colors: active) {
       .carousel > section::scroll-marker:is(:hover, :target-current) {

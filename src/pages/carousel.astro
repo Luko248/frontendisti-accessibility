@@ -149,13 +149,12 @@ const noteClassName = "text-sm text-slate-700";
       translate: calc(-100% - 0.5rem) 0;
     }
 
-    .carousel::scroll-button(*):hover,
-    .carousel::scroll-button(*):focus-visible {
+    .carousel::scroll-button(*):hover {
       --button-bg: color-mix(in oklch, var(--color-primary) 85%, white 15%);
       border-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
       scale: 1.1;
-      outline: none;
     }
+
 
     .carousel > div {
       container-type: scroll-state size;
@@ -199,6 +198,7 @@ const noteClassName = "text-sm text-slate-700";
       --marker-bg: color-mix(in oklch, var(--color-primary) 85%, white 15%);
       border-color: color-mix(in oklch, var(--color-primary) 85%, white 15%);
     }
+
 
     .carousel > div::scroll-marker:target-before,
     .carousel > div::scroll-marker:target-after {
