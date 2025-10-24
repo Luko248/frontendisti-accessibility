@@ -182,6 +182,8 @@ import Layout from "../layouts/Layout.astro";
       padding: 1rem;
       border-right: 1px solid rgb(226 232 240);
       background-color: rgb(248 250 252);
+      border-start-start-radius: 0.75rem;
+      border-end-start-radius: 0.75rem;
     }
 
     @container (inline-size <= 50ch) {
@@ -250,7 +252,6 @@ import Layout from "../layouts/Layout.astro";
         0 2px 4px -2px rgb(0 0 0 / 0.1);
       border-color: var(--color-primary);
     }
-
 
     @media (forced-colors: active) {
       .carousel > section::scroll-marker:is(:hover, :target-current) {
