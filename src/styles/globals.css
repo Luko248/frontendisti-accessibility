@@ -39,10 +39,9 @@ select {
     border-radius: 0.5em;
     background-color: white;
     overflow: clip;
-    overflow-clip-margin: 0.5rem;
     border: none;
-    transition: opacity 0.35s ease, translate 0.35s ease,
-      display 0.35s allow-discrete, overlay 0.35s allow-discrete;
+    transition: opacity 0.25s ease, translate 0.25s ease,
+      display 0.25s allow-discrete, overlay 0.25s allow-discrete;
 
     @media (hover: hover) {
       &:hover {
@@ -61,14 +60,14 @@ select {
       align-items: center;
       inline-size: 100%;
       background-color: var(--btn_bg, white);
-      transition: background-color 0.2s ease;
+      transition: background-color 0.25s ease;
       box-sizing: border-box;
       outline-offset: -2px;
       padding: 0.5rem;
 
       > svg {
         rotate: var(--select-arrow_turn, 0);
-        transition: rotate 0.2s ease;
+        transition: rotate 0.25s ease;
       }
     }
   }
@@ -76,19 +75,24 @@ select {
   /* set the off stage styles */
   &:not(:open)::picker(select) {
     opacity: 0;
-    translate: 0 0.5rem;
+    translate: 0 0.25rem;
   }
 
   /* set the on stage styles */
   &:open::picker(select) {
     opacity: 1;
     translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 0.25rem;
+    }
   }
 
   /* transition the selected option changing */
   selectedcontent > * {
-    transition: scale 0.2s ease, display 0.2s allow-discrete, opacity 0.2s,
-      translate 0.2s ease;
+    transition: scale 0.25s ease, display 0.25s allow-discrete, opacity 0.25s,
+      translate 0.25s ease;
     opacity: 1;
     translate: 0 0;
 
@@ -108,7 +112,7 @@ select {
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: background-color 0.25s ease, color 0.25s ease;
       color: var(--option_color, black);
       background-color: var(--option_bg, transparent);
       outline-offset: -2px;
