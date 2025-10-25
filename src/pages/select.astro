@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 const sectionClassName =
   "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -47,7 +48,7 @@ const sectionClassName =
                   <img
                     width="32"
                     height="32"
-                    src="/images/speakers/zuzana-sumlanska.webp"
+                    src="${baseUrl}images/speakers/zuzana-sumlanska.webp"
                     alt="Obrázok Zuzany Šumlanskej"
                     loading="lazy"
                   />
@@ -59,7 +60,7 @@ const sectionClassName =
                   <img
                     width="32"
                     height="32"
-                    src="/images/speakers/martin-pesout.webp"
+                    src="${baseUrl}images/speakers/martin-pesout.webp"
                     alt="Obrázok Martina Pešouta"
                     loading="lazy"
                   />
@@ -71,7 +72,7 @@ const sectionClassName =
                   <img
                     width="32"
                     height="32"
-                    src="/images/speakers/viktor-danko.webp"
+                    src="${baseUrl}images/speakers/viktor-danko.webp"
                     alt="Obrázok Viktora Daňka"
                     loading="lazy"
                   />
@@ -83,11 +84,23 @@ const sectionClassName =
                   <img
                     width="32"
                     height="32"
-                    src="/images/speakers/krystof-klaban.webp"
+                    src="${baseUrl}images/speakers/krystof-klaban.webp"
                     alt="Obrázok Kryštofa Klabana"
                     loading="lazy"
                   />
                   Krištof Kalban
+                </div>
+              </option>
+               <option value="Srigi">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="${baseUrl}images/speakers/srigi.webp"
+                    alt="Obrázok Igora Hlinu"
+                    loading="lazy"
+                  />
+                  Srigi
                 </div>
               </option>
               <option value="Lukáš Chylík">
@@ -95,7 +108,7 @@ const sectionClassName =
                   <img
                     width="32"
                     height="32"
-                    src="/images/speakers/lukas-chylik.webp"
+                    src="${baseUrl}images/speakers/lukas-chylik.webp"
                     alt="Obrázok Lukáša Chylíka"
                     loading="lazy"
                   />

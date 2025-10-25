@@ -28,6 +28,11 @@
 
 :root {
   allow-discrete: true;
+  --select-spacing: 0.5rem;
+  --select-translate-distance: 0.25rem;
+  --select-duration: 0.25s;
+  --select-duration-fast: 0.2s;
+  --color-white: white;
 }
 
 select {
@@ -35,13 +40,13 @@ select {
   &::picker(select) {
     appearance: base-select;
     font-family: system-ui;
-    box-shadow: 0 0 0.24rem 0 hsla(0 0% 0% / 0.3);
+    box-shadow: 0 0 0.24rem 0 oklch(0 0 0 / 0.3);
     border-radius: 0.5em;
-    background-color: white;
+    background-color: var(--color-white);
     overflow: clip;
     border: none;
-    transition: opacity 0.25s ease, translate 0.25s ease,
-      display 0.25s allow-discrete, overlay 0.25s allow-discrete;
+    transition: opacity var(--select-duration) ease, translate var(--select-duration) ease,
+      display var(--select-duration) allow-discrete, overlay var(--select-duration) allow-discrete;
 
     @media (hover: hover) {
       &:hover {
@@ -56,18 +61,18 @@ select {
     button {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 0.5rem;
+      gap: var(--select-spacing);
       align-items: center;
       inline-size: 100%;
-      background-color: var(--btn_bg, white);
-      transition: background-color 0.25s ease;
+      background-color: var(--btn_bg, var(--color-white));
+      transition: background-color var(--select-duration-fast) ease;
       box-sizing: border-box;
       outline-offset: -2px;
-      padding: 0.5rem;
+      padding: var(--select-spacing);
 
       > svg {
         rotate: var(--select-arrow_turn, 0);
-        transition: rotate 0.25s ease;
+        transition: rotate var(--select-duration-fast) ease;
       }
     }
   }
@@ -75,7 +80,7 @@ select {
   /* set the off stage styles */
   &:not(:open)::picker(select) {
     opacity: 0;
-    translate: 0 0.25rem;
+    translate: 0 var(--select-translate-distance);
   }
 
   /* set the on stage styles */
@@ -85,20 +90,20 @@ select {
 
     @starting-style {
       opacity: 0;
-      translate: 0 0.25rem;
+      translate: 0 var(--select-translate-distance);
     }
   }
 
   /* transition the selected option changing */
   selectedcontent > * {
-    transition: scale 0.25s ease, display 0.25s allow-discrete, opacity 0.25s,
-      translate 0.25s ease;
+    transition: scale var(--select-duration-fast) ease, display var(--select-duration-fast) allow-discrete, opacity var(--select-duration-fast),
+      translate var(--select-duration-fast) ease;
     opacity: 1;
     translate: 0 0;
 
     @starting-style {
       opacity: 0;
-      translate: 0 0.5rem;
+      translate: 0 var(--select-spacing);
     }
   }
 
@@ -110,9 +115,9 @@ select {
     & option {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      gap: var(--select-spacing);
+      padding: var(--select-spacing);
+      transition: background-color var(--select-duration-fast) ease, color var(--select-duration-fast) ease;
       color: var(--option_color, black);
       background-color: var(--option_bg, transparent);
       outline-offset: -2px;
@@ -121,7 +126,7 @@ select {
       &::checkmark {
         cursor: pointer;
         font-weight: 800;
-        color: white;
+        color: var(--color-white);
       }
 
       &:is(:focus, :hover) {
@@ -130,7 +135,7 @@ select {
 
       &:is(:checked) {
         --option_bg: var(--color-primary);
-        --option_color: white;
+        --option_color: var(--color-white);
       }
     }
   }
@@ -138,7 +143,7 @@ select {
 
 .custom-option {
   display: flex;
-  column-gap: 0.5rem;
+  column-gap: var(--select-spacing);
   align-items: center;
   inline-size: 100%;
 
@@ -148,6 +153,6 @@ select {
     inline-size: 2rem;
     object-fit: cover;
     border: 1px solid var(--color-popover-border);
-    background-color: white;
+    background-color: var(--color-white);
   }
 }
