@@ -13,7 +13,7 @@ const baseUrl = import.meta.env.BASE_URL;
     <section class={sectionClassName}>
       <header class="space-y-4 text-center mx-auto">
         <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
-          Custom Select
+          Custom HTML Select
         </h1>
         <p class="text-lg text-gray-800">
           Example showcasing a Custom Select with ARIA attributes and keyboard
@@ -31,7 +31,7 @@ const baseUrl = import.meta.env.BASE_URL;
               for="customSelect"
               class="block text-sm font-medium text-slate-800"
             >
-              Vyberte frontendistu
+              Select person
             </label>
             <select
               id="customSelect" 
@@ -136,17 +136,17 @@ const baseUrl = import.meta.env.BASE_URL;
 </Layout>
 
 <script is:inline>
-  (function () {
+  document.addEventListener("DOMContentLoaded", function () {
     const label = document.querySelector('label[for="customSelect"]');
     const select = document.getElementById("customSelect");
     const button = select?.querySelector("button");
 
     if (label && select && button) {
-      label.addEventListener("click", (e) => {
+      label.addEventListener("click", function (e) {
         e.preventDefault();
         select.focus();
         button.click();
       });
     }
-  })();
+  });
 </script>
