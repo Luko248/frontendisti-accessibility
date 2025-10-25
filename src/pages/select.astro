@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+const sectionClassName =
+  "flex w-full max-w-3xl flex-col items-center gap-10 text-center";
+---
+
+<Layout
+  title="Form Select | Frontendisti Accessibility"
+  description="Demonstrate a properly associated label and select, wrapped as a form item with consistent styling."
+>
+  <div class="flex items-start pt-[10svb] justify-center h-full">
+    <section class={sectionClassName}>
+      <header class="space-y-4 text-center mx-auto">
+        <h1 class="text-4xl font-semibold text-gray-900 mx-auto">
+          Custom Select
+        </h1>
+        <p class="text-lg text-gray-800">
+          Example showcasing a Custom Select with ARIA attributes and keyboard
+          navigation.
+        </p>
+      </header>
+
+      <form
+        class="w-full max-w-md text-left space-y-6"
+        aria-labelledby="example-heading"
+      >
+        <div class="form-item flex flex-col gap-2">
+          <label
+            for="experimentalPicker"
+            class="block text-sm font-medium text-slate-800"
+          >
+            Vyberte frontendistu
+          </label>
+
+          <Fragment
+            set:html={`<select id="experimentalPicker" name="speaker">
+            <button>
+              <selectedcontent></selectedcontent>
+               <svg width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m7 10l5 5l5-5z"/>
+              </svg>
+            </button>
+            <div>
+            
+              <option value="Zuzana Šumlanská">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="/images/speakers/zuzana-sumlanska.webp"
+                    alt="Obrázok Zuzany Šumlanskej"
+                    loading="lazy"
+                  />
+                  Zuzana Šumlanská
+                </div>
+              </option>
+              <option value="Martin Pešout">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="/images/speakers/martin-pesout.webp"
+                    alt="Obrázok Martina Pešouta"
+                    loading="lazy"
+                  />
+                  Martin Pešout
+                </div>
+              </option>
+               <option value="Viktor Daňko">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="/images/speakers/viktor-danko.webp"
+                    alt="Obrázok Viktora Daňka"
+                    loading="lazy"
+                  />
+                  Viktor Daňko
+                </div>
+              </option>
+              <option value="Kryštof Klaban">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="/images/speakers/krystof-klaban.webp"
+                    alt="Obrázok Kryštofa Klabana"
+                    loading="lazy"
+                  />
+                  Krištof Kalban
+                </div>
+              </option>
+              <option value="Lukáš Chylík">
+                <div class="custom-option">
+                  <img
+                    width="32"
+                    height="32"
+                    src="/images/speakers/lukas-chylik.webp"
+                    alt="Obrázok Lukáša Chylíka"
+                    loading="lazy"
+                  />
+                  Lukáš Chylík
+                </div>
+              </option>
+            </div>
+          </select>`}
+          />
+        </div>
+      </form>
+    </section>
+  </div>
+</Layout>

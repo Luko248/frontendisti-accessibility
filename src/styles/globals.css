@@ -5,11 +5,12 @@
 
 @theme {
   --color-primary: oklch(0.5 0.2 264);
+  --color-primary-light: oklch(0.92 0.2 264);
   --color-secondary: oklch(0.5544 0.0407 257.42);
   --color-osm-blue: oklch(0.5535 0.1175 235.08);
   --color-osm-green: oklch(0.7341 0.1246 139.63);
   --color-osm-light: oklch(0.9608 0.0176 239.99);
-  --color-tooltip: oklch(0.6231 0.1880 259.81);
+  --color-tooltip: oklch(0.6231 0.188 259.81);
   --color-popover-surface: oklch(0.2077 0.0398 265.75 / 0.9);
   --color-popover-border: oklch(0.9288 0.0126 255.51);
   --color-popover-text: oklch(1 0 89.88);
@@ -25,4 +26,124 @@
   --breakpoint-xl: 1280px;
 }
 
-/* Force rebuild */
+:root {
+  allow-discrete: true;
+}
+
+select {
+  &,
+  &::picker(select) {
+    appearance: base-select;
+    font-family: system-ui;
+    box-shadow: 0 0 0.24rem 0 hsla(0 0% 0% / 0.3);
+    border-radius: 0.5em;
+    background-color: white;
+    overflow: clip;
+    overflow-clip-margin: 0.5rem;
+    border: none;
+    transition: opacity 0.35s ease, translate 0.35s ease,
+      display 0.35s allow-discrete, overlay 0.35s allow-discrete;
+
+    @media (hover: hover) {
+      &:hover {
+        --btn_bg: var(--color-primary-light);
+      }
+    }
+
+    &:open {
+      --select-arrow_turn: 0.5turn;
+    }
+
+    button {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      align-items: center;
+      inline-size: 100%;
+      background-color: var(--btn_bg, white);
+      transition: background-color 0.2s ease;
+      box-sizing: border-box;
+      outline-offset: -2px;
+      padding: 0.5rem;
+
+      > svg {
+        rotate: var(--select-arrow_turn, 0);
+        transition: rotate 0.2s ease;
+      }
+    }
+  }
+
+  /* set the off stage styles */
+  &:not(:open)::picker(select) {
+    opacity: 0;
+    translate: 0 0.5rem;
+  }
+
+  /* set the on stage styles */
+  &:open::picker(select) {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  /* transition the selected option changing */
+  selectedcontent > * {
+    transition: scale 0.2s ease, display 0.2s allow-discrete, opacity 0.2s,
+      translate 0.2s ease;
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 0.5rem;
+    }
+  }
+
+  &::picker-icon {
+    display: none;
+  }
+
+  > div {
+    & option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      color: var(--option_color, black);
+      background-color: var(--option_bg, transparent);
+      outline-offset: -2px;
+      font-family: system-ui;
+
+      &::checkmark {
+        cursor: pointer;
+        font-weight: 800;
+        color: white;
+      }
+
+      &:is(:focus, :hover) {
+        --option_bg: var(--color-primary-light);
+      }
+
+      &:is(:checked) {
+        --option_bg: var(--color-primary);
+        --option_color: white;
+      }
+    }
+  }
+}
+
+.custom-option {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+  inline-size: 100%;
+
+  > img {
+    border-radius: 100vmax;
+    aspect-ratio: 1;
+    inline-size: 2rem;
+    object-fit: cover;
+    border: 1px solid var(--color-popover-border);
+    background-color: white;
+  }
+}
